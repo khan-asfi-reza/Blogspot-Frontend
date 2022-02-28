@@ -84,19 +84,3 @@ export const FlexRowWrap = ({className, children, ...props}: HTMLAttributes<HTML
         </Flex>
     )
 }
-
-export const Relative = ({className, children, ...props}: HTMLAttributes<HTMLDivElement>) => {
-    return (
-        <Div className={classNames("relative", className)} {...props}>
-            {children}
-        </Div>
-    )
-}
-
-export const Absolute = ({className, children, ...props}: HTMLAttributes<HTMLDivElement>) => {
-    return (
-        <Div className={classNames("absolute", className)} {...props}>
-            {children}
-        </Div>
-    )
-}

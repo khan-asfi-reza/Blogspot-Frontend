@@ -84,3 +84,11 @@ export const FlexRowWrap = ({className, children, ...props}: HTMLAttributes<HTML
         </Flex>
     )
 }
+
+export const Center = ({className, children, ...props}: HTMLAttributes<HTMLDivElement>) => {
+    return (
+        <div className={classNames("grid place-items-center", className)} {...props}>
+            {children}
+        </div>
+    )
+}

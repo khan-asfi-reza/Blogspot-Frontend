@@ -31,7 +31,7 @@ export default function Login() {
                     </Col>
 
                     <Div
-                        className={"z-10 md:mt-0 overflow-hidden transition transform border-8 md:border-blue-500 border-blue-100 bg-blue-100 md:bg-blue-100 rounded-2xl lg:py-16 md:py-10 lg:px-10 lg:px-12 md:px-8 md:py-8 sm:px-6 sm:py-16 py-16 px-4"}>
+                        className={"z-10 md:mt-0 overflow-hidden transition transform border-[1rem] rounded-3xl md:border-blue-500 border-blue-100 bg-blue-100 md:bg-blue-100 rounded-2xl lg:py-16 md:py-10 lg:px-10 lg:px-12 md:px-8 md:py-8 sm:px-6 sm:py-16 py-16 px-4"}>
                         <Div className={"grid place-items-center w-full h-full"}>
                             <Div className={"w-full"}>
                                 <Div>

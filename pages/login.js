@@ -1,9 +1,9 @@
-import {Col, Container, Div, FlexRow, Section} from "../../components/UI/Container";
+import {Col, Container, Div, FlexRow, Section} from "../components/UI/Container";
 import Image from "next/image";
-import LoginPageImage from "../../assets/images/login.png";
-import {HR, SectionHeading, SmallText,} from "../../components/UI/Typography";
-import {Form, Input, InputGroup, Label} from "../../components/UI/Form";
-import {Anchor, Button} from "../../components/UI/Button";
+import LoginPageImage from "../assets/images/login.png";
+import {HR, SectionHeading, SmallText,} from "../components/UI/Typography";
+import {Form, Input, InputGroup, Label} from "../components/UI/Form";
+import {Anchor, Button} from "../components/UI/Button";
 import Link from "next/link";
 import {motion} from "framer-motion";
 

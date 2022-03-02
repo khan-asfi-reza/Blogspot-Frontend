@@ -1,7 +1,7 @@
-import {HTMLAttributes} from "react";
+import {ButtonHTMLAttributes, HTMLAttributes} from "react";
 import classNames from "classnames";
 
-export const Button = ({className, children, ...props}: HTMLAttributes<HTMLButtonElement>) => (
+export const Button = ({className, children, ...props}: ButtonHTMLAttributes<HTMLButtonElement>) => (
     <button className={classNames("px-4 py-4", className)} {...props} >
         {children}
     </button>

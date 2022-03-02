@@ -1,4 +1,4 @@
-import {HTMLAttributes} from "react";
+import {HTMLAttributes, InputHTMLAttributes} from "react";
 import classNames from "classnames";
 
 export const Form = (props: HTMLAttributes<HTMLFormElement>) => {
@@ -15,7 +15,7 @@ export const InputGroup = (props: HTMLAttributes<HTMLDivElement>) => (
     </div>
 )
 
-export const Input = (props: HTMLAttributes<HTMLInputElement>) => (
+export const Input = (props: InputHTMLAttributes<HTMLInputElement>) => (
     <input  {...props} className={classNames(props.className, "active:outline-0 outline-0 px-2 focus:outline-0")}/>
 
 )

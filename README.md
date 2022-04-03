@@ -1,6 +1,6 @@
-## Raydblock Frontend
+## Blogspot Frontend
 
-Raydblock is a blogging and social media platform for publishing contents
+Blogspot is a blogging and social media platform for publishing contents
 
 ## File Structure
 

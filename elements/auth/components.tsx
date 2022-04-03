@@ -4,6 +4,9 @@ import Logo from "../../assets/images/logo.png";
 import {SectionHeading, SmallText} from "../../components/UI/Typography";
 import {Form, Input, InputGroup, Label} from "../../components/UI/Form";
 import classNames from "classnames";
+import {FaSpinner} from "react-icons/fa";
+import {Button} from "../../components/UI/Button";
+import {useRef, useState} from "react";
 
 
 export function AuthFormHeader({text}: { text: string }) {
@@ -43,7 +46,10 @@ export function AuthFormFooter({text, onClick, buttonText}) {
     )
 }
 
-export function AuthInputGroup({setInputState, value, name, type, icon, label}) {
+export function AuthInputGroup({setInputState, value, name, type, icon, label, iconOnClick = null}) {
+    const inputRef = useRef(null);
+    const [currentIcon, changeCurrentIcon] = useState(icon);
+
     return (
         <InputGroup className={"group mt-6"}>
             <FlexRow
@@ -51,6 +57,7 @@ export function AuthInputGroup({setInputState, value, name, type, icon, label}) 
                 <Input onChange={setInputState}
                        value={value}
                        name={name}
+                       ref={inputRef}
                        type={type}
                        required={true}
                        className={"text-gray-700 autofill-transparent peer bg-transparent transition-all duration-500 w-full h-12"}/>
@@ -63,19 +70,25 @@ export function AuthInputGroup({setInputState, value, name, type, icon, label}) 
                     )}>
                     {label}
                 </Label>
-                <span className={"text-2xl peer-focus:text-emerald-500 grid place-items-center px-2"}>
-                    {icon}
+                <span
+                    onClick={() => {
+                        if (iconOnClick) {
+                            iconOnClick(inputRef, changeCurrentIcon)
+                        }
+                    }}
+                    className={"text-2xl peer-focus:text-emerald-500 grid place-items-center px-2"}>
+                    {currentIcon}
                 </span>
             </FlexRow>
         </InputGroup>
     )
 }
 
-export function AuthForm({fields, setInputState, formOnSubmit}) {
+export function AuthForm({fields, setInputState, formOnSubmit, children, loading}) {
     return (
         <Form onSubmit={formOnSubmit} className={"mt-10"}>
             {
-                fields.map(({name, type, label, value, icon, row, rowClass}, key) =>
+                fields.map(({name, type, label, value, icon, row, rowClass, iconOnClick}, key) =>
                     row.length ? <Grid className={classNames(rowClass, "gap-x-6")}>
                             {row.map((rowData, k) => (
                                 <AuthInputGroup
@@ -89,6 +102,8 @@ export function AuthForm({fields, setInputState, formOnSubmit}) {
                             ))}
                         </Grid> :
                         <AuthInputGroup setInputState={setInputState}
+                                        key={key}
+                                        iconOnClick={iconOnClick}
                                         value={value}
                                         name={name}
                                         type={type}
@@ -96,6 +111,14 @@ export function AuthForm({fields, setInputState, formOnSubmit}) {
                                         label={label}/>
                 )
             }
+            {children}
+            <Button disabled={loading}
+                    type={"submit"}
+                    className={classNames("bg-theme justify-center w-full flex items-center mt-12",
+                        "text-white disabled:bg-emerald-500 md:px-10 px-8 hover:bg-blue-500 transition-all")}>
+                {loading && <i className={"animate-spin mr-2"}><FaSpinner/></i>}
+                Login
+            </Button>
         </Form>
     )
 }

@@ -7,7 +7,8 @@ export interface PostApiHookState {
     res: any,
 }
 
-export default function usePostApi<Data>(url: string, config: any = {}): [PostApiHookState, ((data: Data) => Promise<void>)] {
+export default function usePostApi<Data>(url: string, config: any = {}):
+    [PostApiHookState, ((data: Data) => Promise<void>)] {
 
     const [state, setState] = useState(
         {

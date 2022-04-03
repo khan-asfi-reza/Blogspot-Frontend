@@ -1,35 +1,38 @@
-import {HTMLAttributes} from "react";
 import classNames from "classnames";
+import {HTMLMotionProps, motion} from "framer-motion";
 
-interface ContainerInterface extends HTMLAttributes<HTMLDivElement> {
+export interface ContainerInterface extends HTMLMotionProps<"div"> {
     overWrite?: boolean,
+}
+
+export interface MotionDivProps extends HTMLMotionProps<"div"> {
 }
 
 export const Container = ({className, children, overWrite = false, ...props}: ContainerInterface) => {
     return (
-        <div className={classNames(!overWrite && "container mx-auto", className)} {...props}>
+        <motion.div className={classNames(!overWrite && "container mx-auto", className)} {...props}>
             {children}
-        </div>
+        </motion.div>
     )
 }
 
-export const Section = (props: HTMLAttributes<HTMLElement>) => {
+export const Section = (props: HTMLMotionProps<"section">) => {
     return (
-        <section {...props}>
+        <motion.section {...props}>
             {props.children}
-        </section>
+        </motion.section>
     )
 }
 
-export const Div = (props: HTMLAttributes<HTMLDivElement>) => {
+export const Div = (props: MotionDivProps) => {
     return (
-        <div {...props}>
+        <motion.div {...props}>
             {props.children}
-        </div>
+        </motion.div>
     )
 }
 
-export const Grid = ({className, children, ...props}: HTMLAttributes<HTMLDivElement>) => {
+export const Grid = ({className, children, ...props}: MotionDivProps) => {
     return (
         <Div className={classNames("grid", className)} {...props}>
             {children}
@@ -37,7 +40,7 @@ export const Grid = ({className, children, ...props}: HTMLAttributes<HTMLDivElem
     )
 }
 
-export const Flex = ({className, children, ...props}: HTMLAttributes<HTMLDivElement>) => {
+export const Flex = ({className, children, ...props}: MotionDivProps) => {
     return (
         <Div className={classNames("flex", className)} {...props}>
             {children}
@@ -45,7 +48,7 @@ export const Flex = ({className, children, ...props}: HTMLAttributes<HTMLDivElem
     )
 }
 
-export const FlexRow = ({className, children, ...props}: HTMLAttributes<HTMLDivElement>) => {
+export const FlexRow = ({className, children, ...props}: MotionDivProps) => {
     return (
         <Flex className={classNames("flex-row", className)} {...props}>
             {children}
@@ -53,7 +56,7 @@ export const FlexRow = ({className, children, ...props}: HTMLAttributes<HTMLDivE
     )
 }
 
-export const Row = ({className, children, ...props}: HTMLAttributes<HTMLDivElement>) => {
+export const Row = ({className, children, ...props}: MotionDivProps) => {
     return (
         <Div className={classNames(className)} {...props}>
             {children}
@@ -61,7 +64,7 @@ export const Row = ({className, children, ...props}: HTMLAttributes<HTMLDivEleme
     )
 }
 
-export const Col = ({className, children, ...props}: HTMLAttributes<HTMLDivElement>) => {
+export const Col = ({className, children, ...props}: MotionDivProps) => {
     return (
         <Div className={classNames(className)} {...props}>
             {children}
@@ -69,7 +72,7 @@ export const Col = ({className, children, ...props}: HTMLAttributes<HTMLDivEleme
     )
 }
 
-export const FlexCol = ({className, children, ...props}: HTMLAttributes<HTMLDivElement>) => {
+export const FlexCol = ({className, children, ...props}: MotionDivProps) => {
     return (
         <Flex className={classNames("flex-col", className)} {...props}>
             {children}
@@ -77,7 +80,7 @@ export const FlexCol = ({className, children, ...props}: HTMLAttributes<HTMLDivE
     )
 }
 
-export const FlexRowWrap = ({className, children, ...props}: HTMLAttributes<HTMLDivElement>) => {
+export const FlexRowWrap = ({className, children, ...props}: MotionDivProps) => {
     return (
         <Flex className={classNames("flex-row flex-wrap", className)} {...props}>
             {children}
@@ -85,10 +88,10 @@ export const FlexRowWrap = ({className, children, ...props}: HTMLAttributes<HTML
     )
 }
 
-export const Center = ({className, children, ...props}: HTMLAttributes<HTMLDivElement>) => {
+export const Center = ({className, children, ...props}: MotionDivProps) => {
     return (
-        <div className={classNames("grid place-items-center", className)} {...props}>
+        <Div className={classNames("grid place-items-center", className)} {...props}>
             {children}
-        </div>
+        </Div>
     )
 }

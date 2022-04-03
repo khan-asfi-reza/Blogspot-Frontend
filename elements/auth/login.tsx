@@ -1,8 +1,7 @@
-import {Div, FlexRow, Grid} from "../../components/UI/Container";
-import {Anchor, Button} from "../../components/UI/Button";
-import {FaSpinner} from "react-icons/fa";
+import {Div, Grid} from "../../components/UI/Container";
+import {Anchor} from "../../components/UI/Button";
 import {useState} from "react";
-import {IoAtCircleOutline, IoLockOpenOutline} from "react-icons/io5";
+import {IoAtCircleOutline, IoLockClosedOutline, IoLockOpenOutline} from "react-icons/io5";
 import useApi from "../../hook/useApi";
 import {AuthForm, AuthFormFooter, AuthFormHeader} from "./components";
 
@@ -38,6 +37,15 @@ export default function Login() {
             icon: <IoLockOpenOutline/>,
             row: [],
             rowClass: "",
+            iconOnClick: function (ref, changeIcon) {
+                if (ref.current.type === "text") {
+                    ref.current.type = "password";
+                    changeIcon(<IoLockClosedOutline/>)
+                } else {
+                    ref.current.type = "text";
+                    changeIcon(<IoLockOpenOutline/>)
+                }
+            }
         }
     ]
 
@@ -54,18 +62,14 @@ export default function Login() {
         <Grid className={"grid  w-full h-full relative"}>
             <Div className={"w-full"}>
                 <AuthFormHeader text={"Login to Blogspot"}/>
-                <AuthForm setInputState={setInputState} formOnSubmit={formOnClick} fields={InputFields}/>
-                <Div className={"text-right"}>
-                    <Anchor className={"mt-4 hover:text-yellow-700"}>Forgot Password?</Anchor>
-                </Div>
-                <FlexRow className={"justify-between mt-12"}>
-                    <Button disabled={apiData.loading} type={"submit"}
-                            className={"bg-theme justify-center w-full flex items-center " +
-                                "text-white disabled:bg-emerald-500 md:px-10 px-8 hover:bg-blue-500 transition-all"}>
-                        {apiData.loading && <i className={"animate-spin mr-2"}><FaSpinner/></i>}
-                        Login
-                    </Button>
-                </FlexRow>
+                <AuthForm loading={apiData.loading}
+                          setInputState={setInputState}
+                          formOnSubmit={formOnClick}
+                          fields={InputFields}>
+                    <Div className={"text-right"}>
+                        <Anchor className={"mt-4 hover:text-yellow-700"}>Forgot Password?</Anchor>
+                    </Div>
+                </AuthForm>
                 <AuthFormFooter text={"Don't have an account?"} buttonText={"Create Account"} onClick={() => {
                 }}/>
             </Div>

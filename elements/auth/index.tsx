@@ -5,6 +5,12 @@ import Signup from "./signup";
 import {AuthFormFooter, AuthFormSideBar} from "./components";
 import classNames from "classnames";
 import {AnimatePresence} from "framer-motion";
+import {
+    ACCOUNT_CREATION_BUTTON_TEXT,
+    ACCOUNT_CREATION_TEXT,
+    SWITCH_TO_LOGIN_BUTTON_TEXT,
+    SWITCH_TO_LOGIN_TEXT
+} from "../../content";
 
 
 export const CHANGE_LOGIN_STATE = "CHANGE_LOGIN_STATE";
@@ -67,11 +73,12 @@ export default function AuthMain() {
     }
 
     const variants = {
-        exit: {x: -1000, opacity: 0},
-        initial: {x: 1000, opacity: 0},
+        exit: {x: 1000, opacity: 0},
+        initial: {x: -1000, opacity: 0},
         animate: {x: 0, opacity: 1},
-        transition: {duration: 0.3}
+        transition: {duration: 0.5}
     }
+
 
     return (
         <Section id={"LOGIN_SECTION"}
@@ -85,7 +92,8 @@ export default function AuthMain() {
                        }}
                        animate="enter"
                        exit="exit"
-                       transition={{type: 'linear'}} className={"max-w-7xl min-h-screen grid place-items-center px-4"}>
+                       transition={{type: 'linear', duration: 0.2}}
+                       className={"max-w-7xl min-h-screen grid place-items-center px-4"}>
                 <Div className={classNames("static min-h-[75vh] md:grid m-auto ",
                     "w-full rounded-2xl md:bg-theme md:grid-cols-2 md:overflow-hidden")}>
                     <AuthFormSideBar/>
@@ -116,8 +124,25 @@ export default function AuthMain() {
                             </AnimatePresence>
 
                         </FlexRow>
-                        <AuthFormFooter text={"Don't have an account?"} buttonText={"Create Account"}
-                                        onClick={changePage}/>
+                        <AnimatePresence exitBeforeEnter={true}>
+                            {
+                                current === 0 &&
+                                <Div {...variants} key={0}>
+                                    <AuthFormFooter text={ACCOUNT_CREATION_TEXT}
+                                                    buttonText={ACCOUNT_CREATION_BUTTON_TEXT}
+                                                    onClick={changePage}/>
+                                </Div>
+                            }
+                            {
+                                current === 1 &&
+                                <Div{...variants} key={1}>
+                                    <AuthFormFooter text={SWITCH_TO_LOGIN_TEXT}
+                                                    buttonText={SWITCH_TO_LOGIN_BUTTON_TEXT}
+                                                    onClick={changePage}/>
+                                </Div>
+                            }
+                        </AnimatePresence>
+
                     </Col>
                 </Div>
             </Container>

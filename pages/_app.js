@@ -1,10 +1,10 @@
 import '../styles/globals.css'
 import {AnimatePresence} from "framer-motion";
 
-function MyApp({ Component, pageProps }) {
+function App({Component, pageProps}) {
   return <AnimatePresence exitBeforeEnter={true}>
     <Component {...pageProps}/>
   </AnimatePresence>
 }
 
-export default MyApp
+export default App

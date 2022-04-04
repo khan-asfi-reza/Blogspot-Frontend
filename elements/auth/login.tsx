@@ -3,6 +3,7 @@ import {Anchor} from "../../components/UI/Button";
 import {IoAtCircleOutline} from "react-icons/io5";
 import useApi from "../../hook/useApi";
 import {AuthForm, AuthFormContainer, AuthFormFieldInterface, AuthFormHeader, passwordTextSwitch} from "./components";
+import {LOGIN_PAGE_TEXT} from "../../content";
 
 export default function Login({state, setState}) {
 
@@ -53,8 +54,8 @@ export default function Login({state, setState}) {
 
     return (
         <AuthFormContainer>
-            <AuthFormHeader text={"Login to Lightboat"}/>
-            <AuthForm loading={apiData.loading} formOnSubmit={formOnClick} fields={InputFields}>
+            <AuthFormHeader text={LOGIN_PAGE_TEXT}/>
+            <AuthForm buttonText={"Login"} loading={apiData.loading} formOnSubmit={formOnClick} fields={InputFields}>
                 <Div className={"text-right"}>
                     <Anchor className={"mt-4 hover:text-yellow-700"}>Forgot Password?</Anchor>
                 </Div>

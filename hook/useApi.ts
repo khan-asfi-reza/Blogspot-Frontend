@@ -7,9 +7,11 @@ export interface PostApiHookState {
     res: any,
 }
 
+// Hook to handle api post data
 export default function usePostApi<Data>(url: string, config: any = {}):
-    [PostApiHookState, ((data: Data) => Promise<void>)] {
+    [PostApiHookState, ((data: Data, preInit?: Function) => Promise<void>)] {
 
+    // State that will save loading state, error state and response object
     const [state, setState] = useState(
         {
             loading: false,
@@ -18,15 +20,24 @@ export default function usePostApi<Data>(url: string, config: any = {}):
         }
     );
 
-    const post = async (data: Data,): Promise<void> => {
+    // Post Function Hook
+    /**
+     *
+     * @param {<Data>} data - Post API Request Data
+     * @param {Function} preInit - Function preflight
+     */
+    const post = async (data: Data, preInit?: Function): Promise<void> => {
         await setState({...state, loading: true})
+        if (preInit) {
+            await preInit();
+        }
         let res, error;
         try {
             res = await axios.post(url, data, config);
         } catch (e) {
-            error = e.response;
+            error = await e.response;
         }
-        setState({loading: false, res: res, error: error})
+        await setState({loading: false, res: res, error: error})
     }
 
     return [state, post]

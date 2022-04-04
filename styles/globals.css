@@ -25,3 +25,7 @@ a, button {
 .autofill-transparent:-webkit-autofill:active {
     transition: background-color 9999s ease-in-out 0s;
 }
+
+.flex-full {
+    flex: 0 0 auto;
+}

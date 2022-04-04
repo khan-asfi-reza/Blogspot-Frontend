@@ -6,11 +6,13 @@ import {Form, Input, InputInterface} from "../../components/UI/Form";
 import classNames from "classnames";
 import {FaSpinner} from "react-icons/fa";
 import {Button} from "../../components/UI/Button";
-import {FormEventHandler, MouseEventHandler} from "react";
+import {FormEventHandler, MouseEventHandler, useEffect, useState} from "react";
 import {IoLockClosedOutline, IoLockOpenOutline} from "react-icons/io5";
 import LoginPageImage from "../../assets/images/login.png";
+import {AUTH_SIDE_BAR_HEADING, AUTH_SIDE_BAR_TEXT, LOGIN_PAGE_HEADING} from "../../content";
+import {AnimatePresence} from "framer-motion";
 
-
+// Auth Form Password To Text Switch Function
 export function passwordTextSwitch(ref, changeIcon) {
     if (ref.current.type === "text") {
         ref.current.type = "password";
@@ -21,31 +23,47 @@ export function passwordTextSwitch(ref, changeIcon) {
     }
 }
 
-
+// Auth Form Side bar Image and Text
 export function AuthFormSideBar() {
+    const [state, setState] = useState(0);
+
+    const variants = {
+        exit: {x: 1000, opacity: 0},
+        initial: {x: -1000, opacity: 0},
+        animate: {x: 0, opacity: 1},
+        transition: {duration: 0.5}
+    }
+    useEffect(() => {
+
+    }, [])
     return (
-        <Col
-            className={"md:static relative md:h-auto bg-theme h-56 w-full md:rounded-none rounded-t-3xl md:p-12 grid place-items-center z-20"}>
-            <Div>
-                <Div
-                    className={"md:static absolute top-12 left-1/2 md:translate-x-0 -translate-x-1/2 md:h-auto md:w-full md:border-0 border-8 border-theme h-56 w-56 rounded-full md:bg-transparent bg-blue-100 grid place-items-center mx-auto"}>
-                    <Div className={"md:w-full mx-auto w-10/12 "}>
-                        <Image alt={"LoginImage"} src={LoginPageImage}/>
+        <Col className={
+            classNames("md:static relative md:h-auto bg-theme md:h-full sm:h-96 h-96 w-full md:rounded-none",
+                "rounded-t-3xl md:p-12 grid place-items-center z-20")}>
+            <AnimatePresence>
+                {
+                    state === 0 &&
+                    <Div
+                        {...variants}
+                        key={"img1"}
+                        className={"h-full grid place-items-center overflow-hidden flex-full"}>
+                        <Div className={"md:w-full mx-auto w-10/12 md:h-96 sm:h-72 h-52 relative"}>
+                            <Image alt={"LoginImage"} src={LoginPageImage} objectFit='contain' layout={"fill"}/>
+                        </Div>
+                        <Div className={"md:order-2 order-1 lg:grid lg:place-items-center"}>
+                            <Div>
+                                <SectionHeading className={"text-center text-white font-medium"}>
+                                    {AUTH_SIDE_BAR_HEADING}
+                                </SectionHeading>
+                                <SmallText className={"text-gray-100 text-center font-base"}>
+                                    {AUTH_SIDE_BAR_TEXT}
+                                </SmallText>
+                            </Div>
+                        </Div>
                     </Div>
-                </Div>
-                <Div className={"md:grid hidden place-items-center"}>
-                    <Div>
-                        <SectionHeading
-                            className={"text-center text-white font-medium"}>
-                            Read write and enjoy
-                        </SectionHeading>
-                        <SmallText className={"text-gray-100" +
-                            " text-center font-base"}>
-                            Lightboat the finest premium blogging site
-                        </SmallText>
-                    </Div>
-                </Div>
-            </Div>
+                }
+
+            </AnimatePresence>
         </Col>
     )
 }
@@ -73,13 +91,12 @@ export function AuthFormHeader({text}: { text: string }) {
         <Div>
             <Div className={"h-28 w-28 mb-5 rounded-full mx-auto bg-gray-100"}>
                 <Div className={"relative w-[90%] mx-auto h-full"}>
-                    <Image src={Logo} alt={"Blogspot Logo"} layout='fill'
-                           objectFit='contain'/>
+                    <Image src={Logo} alt={"Logo"} layout='fill' objectFit='contain'/>
                 </Div>
             </Div>
             <SectionHeading
                 className={"text-center text-black font-medium"}>
-                Welcome
+                {LOGIN_PAGE_HEADING}
             </SectionHeading>
             <SmallText className={"text-gray-600 text-center"}>
                 {text}
@@ -130,7 +147,8 @@ interface AuthFormPropsInterface {
     fields: Array<AuthFormFieldInterface>,
     loading: boolean,
     formOnSubmit: FormEventHandler<HTMLFormElement>,
-    children?: JSX.Element
+    children?: JSX.Element,
+    buttonText: string
 }
 
 /**
@@ -141,7 +159,7 @@ interface AuthFormPropsInterface {
  * @param {boolean}loading - Is Button Loading or not
  *
  */
-export function AuthForm({fields, formOnSubmit, children, loading}: AuthFormPropsInterface) {
+export function AuthForm({fields, formOnSubmit, children, loading, buttonText}: AuthFormPropsInterface) {
 
     return (
         <Form onSubmit={formOnSubmit} className={"mt-10"}>
@@ -163,7 +181,7 @@ export function AuthForm({fields, formOnSubmit, children, loading}: AuthFormProp
                     className={classNames("bg-theme justify-center w-full flex items-center mt-12",
                         "text-white disabled:bg-emerald-500 md:px-10 px-8 hover:bg-blue-500 transition-all")}>
                 {loading && <i className={"animate-spin mr-2"}><FaSpinner/></i>}
-                Login
+                {buttonText}
             </Button>
         </Form>
     )

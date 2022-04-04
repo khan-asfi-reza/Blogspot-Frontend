@@ -1,6 +1,7 @@
 import {IoAtCircleOutline, IoLockClosedOutline, IoLockOpenOutline, IoPerson} from "react-icons/io5";
 import useApi from "../../hook/useApi";
 import {AuthForm, AuthFormContainer, AuthFormFieldInterface, AuthFormHeader, passwordTextSwitch} from "./components";
+import {SIGNUP_PAGE_TEXT} from "../../content";
 
 export default function Signup({state, setState}) {
 
@@ -25,7 +26,7 @@ export default function Signup({state, setState}) {
         },
         {
             field: null,
-            rowClass: "grid-cols-2",
+            rowClass: "sm:grid-cols-2",
             row: [
                 {
                     icon: <IoPerson/>,
@@ -90,8 +91,8 @@ export default function Signup({state, setState}) {
 
     return (
         <AuthFormContainer>
-            <AuthFormHeader text={"Sign up to Lightboat"}/>
-            <AuthForm loading={apiData.loading} formOnSubmit={formOnClick} fields={InputFields}/>
+            <AuthFormHeader text={SIGNUP_PAGE_TEXT}/>
+            <AuthForm buttonText={"Sign Up"} loading={apiData.loading} formOnSubmit={formOnClick} fields={InputFields}/>
         </AuthFormContainer>
     )
 }

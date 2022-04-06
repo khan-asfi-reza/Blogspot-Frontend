@@ -1,4 +1,4 @@
-import {Col, Div, Grid} from "../../components/UI/Container";
+import {Col, Div, FlexRow, Grid} from "../../components/UI/Container";
 import Image from "next/image";
 import Logo from "../../assets/images/logo.png";
 import {SectionHeading, SmallText} from "../../components/UI/Typography";
@@ -9,8 +9,15 @@ import {Button} from "../../components/UI/Button";
 import {FormEventHandler, MouseEventHandler, useEffect, useState} from "react";
 import {IoLockClosedOutline, IoLockOpenOutline} from "react-icons/io5";
 import LoginPageImage from "../../assets/images/login.png";
+import LoginPageImage2 from "../../assets/images/login_2.png";
 import {AUTH_SIDE_BAR_HEADING, AUTH_SIDE_BAR_TEXT, LOGIN_PAGE_HEADING} from "../../content";
 import {AnimatePresence} from "framer-motion";
+
+function range(len) {
+    return Array.apply(null, Array(len)).map(function (_, i) {
+        return i;
+    });
+}
 
 // Auth Form Password To Text Switch Function
 export function passwordTextSwitch(ref, changeIcon) {
@@ -23,47 +30,95 @@ export function passwordTextSwitch(ref, changeIcon) {
     }
 }
 
-// Auth Form Side bar Image and Text
-export function AuthFormSideBar() {
-    const [state, setState] = useState(0);
-
+// Auth Side Slide
+export function AuthSideSlide({image, heading, text, length, current}) {
     const variants = {
         exit: {x: 1000, opacity: 0},
         initial: {x: -1000, opacity: 0},
         animate: {x: 0, opacity: 1},
         transition: {duration: 0.5}
     }
-    useEffect(() => {
 
-    }, [])
     return (
-        <Col className={
-            classNames("md:static relative md:h-auto bg-theme md:h-full sm:h-96 h-96 w-full md:rounded-none",
-                "rounded-t-3xl md:p-12 grid place-items-center z-20")}>
-            <AnimatePresence>
-                {
-                    state === 0 &&
-                    <Div
-                        {...variants}
-                        key={"img1"}
-                        className={"h-full grid place-items-center overflow-hidden flex-full"}>
-                        <Div className={"md:w-full mx-auto w-10/12 md:h-96 sm:h-72 h-52 relative"}>
-                            <Image alt={"LoginImage"} src={LoginPageImage} objectFit='contain' layout={"fill"}/>
-                        </Div>
-                        <Div className={"md:order-2 order-1 lg:grid lg:place-items-center"}>
-                            <Div>
-                                <SectionHeading className={"text-center text-white font-medium"}>
-                                    {AUTH_SIDE_BAR_HEADING}
-                                </SectionHeading>
-                                <SmallText className={"text-gray-100 text-center font-base"}>
-                                    {AUTH_SIDE_BAR_TEXT}
-                                </SmallText>
-                            </Div>
-                        </Div>
-                    </Div>
-                }
+        <Div {...variants}
+             className={"w-full grid place-items-center overflow-hidden flex-full"}>
+            <Div className={"md:w-full mx-auto w-full md:h-[30rem] sm:h-72 h-72 relative"}>
+                <Image alt={"LoginImage"} src={image} objectFit='contain' layout={"fill"}/>
+            </Div>
+            <Div className={" lg:grid lg:place-items-center"}>
+                <FlexRow className={"py-2 items-center justify-between"}>
+                    {
+                        range(length).map((e) => (
+                            <Div key={e}
+                                 className={classNames("h-2 w-2 mx-4 bg-white rounded-full", e === current && 'p-2')}>
 
-            </AnimatePresence>
+                            </Div>
+                        ))
+                    }
+                </FlexRow>
+                <Div>
+                    <SectionHeading className={"text-center text-white font-medium md:text-4xl"}>
+                        {heading}
+                    </SectionHeading>
+                    <SmallText className={"text-gray-100 text-center font-base"}>
+                        {text}
+                    </SmallText>
+                </Div>
+            </Div>
+        </Div>
+    )
+}
+// Auth Form Side bar Image and Text
+export function AuthFormSideBar() {
+    const [state, setState] = useState(0);
+
+    const SlideList = [
+        {
+            id: 1,
+            element: <AuthSideSlide
+                heading={AUTH_SIDE_BAR_HEADING}
+                text={AUTH_SIDE_BAR_TEXT}
+                length={2}
+                current={state}
+                image={LoginPageImage}
+                key={1}
+            />
+        },
+        {
+            id: 2,
+            element: <AuthSideSlide
+                heading={AUTH_SIDE_BAR_HEADING}
+                length={2}
+                current={state}
+                text={AUTH_SIDE_BAR_TEXT}
+                image={LoginPageImage2}
+                key={2}
+            />
+        }
+    ]
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (state === 0) {
+                setState(1);
+            } else {
+                setState(0);
+            }
+        }, 6000)
+    }, [state])
+    return (
+        <Col
+            className={classNames("md:static relative md:h-auto bg-theme md:h-full sm:h-96 h-96 w-full md:rounded-none",
+                "rounded-t-3xl grid place-items-center z-20 p-2")}>
+            <FlexRow className={"w-full overflow-hidden"}>
+                <AnimatePresence exitBeforeEnter={true}>
+                    {
+                        SlideList.map((each, key) => (
+                            key === state && each.element
+                        ))
+                    }
+                </AnimatePresence>
+            </FlexRow>
         </Col>
     )
 }
@@ -156,8 +211,8 @@ interface AuthFormPropsInterface {
  * @param {Array<AuthFormFieldInterface>}fields - List of Input Fields inside the form
  * @param {FormEventHandler<HTMLFormElement>}formOnSubmit - Form On submit action
  * @param {JSX.Element}children - JSX Children
- * @param {boolean}loading - Is Button Loading or not
- *
+ * @param {boolean}loading - Is Button Loading or not, mainly to show if form is sending request to the api
+ * @param {string}buttonText - Button Display Text
  */
 export function AuthForm({fields, formOnSubmit, children, loading, buttonText}: AuthFormPropsInterface) {
 

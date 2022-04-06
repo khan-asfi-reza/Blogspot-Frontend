@@ -97,9 +97,10 @@ export default function AuthMain() {
                 <Div className={classNames("static min-h-[75vh] md:grid m-auto ",
                     "w-full rounded-2xl md:bg-theme md:grid-cols-2 md:overflow-hidden")}>
                     <AuthFormSideBar/>
-                    <Col className={classNames("z-10 md:mt-0 overflow-hidden transition transform border-[1rem]",
-                        "md:rounded-3xl md:border-theme rounded-b-3xl border-white bg-white ",
-                        " lg:py-16 md:py-10 lg:px-10 lg:px-12 md:px-10 md:py-8 sm:px-10 sm:py-16 py-16 ")}>
+                    <Col
+                        className={classNames("z-10 md:mt-0 overflow-hidden transition transform md:border-[1rem] border-4",
+                            "rounded-3xl border-theme  border-white bg-white ",
+                            " lg:py-16 md:py-10 lg:px-10 lg:px-12 md:px-10 md:py-8 sm:px-10 sm:py-16 py-16 px-2")}>
                         <FlexRow className={"flex-nowrap w-full"}>
                             <AnimatePresence exitBeforeEnter={true}>
                                 {

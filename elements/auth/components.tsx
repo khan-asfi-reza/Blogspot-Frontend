@@ -48,9 +48,9 @@ export function AuthSideSlide({image, heading, text, length, current}) {
             <Div className={" lg:grid lg:place-items-center"}>
                 <FlexRow className={"py-2 items-center justify-between"}>
                     {
-                        range(length).map((e) => (
+                        range(3).map((e) => (
                             <Div key={e}
-                                 className={classNames("h-2 w-2 mx-4 bg-white rounded-full", e === current && 'p-2')}>
+                                 className={classNames("h-2 w-2 mx-4 bg-white rounded-full",)}>
 
                             </Div>
                         ))
@@ -108,8 +108,8 @@ export function AuthFormSideBar() {
     }, [state])
     return (
         <Col
-            className={classNames("md:static relative md:h-auto bg-theme md:h-full sm:h-96 h-96 w-full md:rounded-none",
-                "rounded-t-3xl grid place-items-center z-20 p-2")}>
+            className={classNames("md:static md:grid hidden relative md:h-auto bg-theme md:h-full sm:h-96 h-96 w-full md:rounded-none",
+                "rounded-t-3xl  place-items-center z-20 p-2")}>
             <FlexRow className={"w-full overflow-hidden"}>
                 <AnimatePresence exitBeforeEnter={true}>
                     {

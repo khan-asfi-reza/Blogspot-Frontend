@@ -1,6 +1,6 @@
-## Blogspot Frontend
+## Firebolt Frontend
 
-Blogspot is a blogging and social media platform for publishing contents
+Firebolt is a blogging and social media platform for publishing contents
 
 ## File Structure
 

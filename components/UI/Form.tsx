@@ -1,7 +1,6 @@
 import {forwardRef, HTMLAttributes, InputHTMLAttributes, MutableRefObject, useRef, useState} from "react";
 import classNames from "classnames";
 import {Div, FlexRow} from "./Container";
-import {SmallText} from "./Typography";
 
 /**
  * UI Form
@@ -132,13 +131,13 @@ export const AbstractInput = forwardRef(
                     {icon}
                 </span>
                 </FlexRow>
-                <Div className={"h-4 overflow-hidden"}>
+                <Div className={"h-5 overflow-hidden"}>
                     <Div animate={validator && validator() ? "open" : "closed"}
                          variants={variants}>
                         {
-                            <SmallText className={"my-0 text-red-500"}>
+                            <p className={"my-0 text-red-500 text-sm"}>
                                 {validator && validator()}
-                            </SmallText>
+                            </p>
                         }
                     </Div>
                 </Div>

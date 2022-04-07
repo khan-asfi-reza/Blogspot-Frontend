@@ -8,9 +8,7 @@ import {FaSpinner} from "react-icons/fa";
 import {Button} from "../../components/UI/Button";
 import {FormEventHandler, MouseEventHandler, useEffect, useState} from "react";
 import {IoLockClosedOutline, IoLockOpenOutline} from "react-icons/io5";
-import LoginPageImage from "../../assets/images/login.png";
-import LoginPageImage2 from "../../assets/images/login_2.png";
-import {AUTH_SIDE_BAR_HEADING, AUTH_SIDE_BAR_TEXT, LOGIN_PAGE_HEADING} from "../../content";
+import {AUTH_FORM_SIDE_SECTION_CONTENTS, LOGIN_PAGE_HEADING} from "../../content";
 import {AnimatePresence} from "framer-motion";
 
 function range(len) {
@@ -31,7 +29,7 @@ export function passwordTextSwitch(ref, changeIcon) {
 }
 
 // Auth Side Slide
-export function AuthSideSlide({image, heading, text, length, current}) {
+export function AuthSideSlide({image, heading, text, length}) {
     const variants = {
         exit: {x: 1000, opacity: 0},
         initial: {x: -1000, opacity: 0},
@@ -46,12 +44,11 @@ export function AuthSideSlide({image, heading, text, length, current}) {
                 <Image alt={"LoginImage"} src={image} objectFit='contain' layout={"fill"}/>
             </Div>
             <Div className={" lg:grid lg:place-items-center"}>
-                <FlexRow className={"py-2 items-center justify-between"}>
+                <FlexRow className={"py-2 items-center justify-between my-2"}>
                     {
-                        range(3).map((e) => (
+                        range(length).map((e) => (
                             <Div key={e}
                                  className={classNames("h-2 w-2 mx-4 bg-white rounded-full",)}>
-
                             </Div>
                         ))
                     }
@@ -68,41 +65,17 @@ export function AuthSideSlide({image, heading, text, length, current}) {
         </Div>
     )
 }
+
 // Auth Form Side bar Image and Text
 export function AuthFormSideBar() {
     const [state, setState] = useState(0);
 
-    const SlideList = [
-        {
-            id: 1,
-            element: <AuthSideSlide
-                heading={AUTH_SIDE_BAR_HEADING}
-                text={AUTH_SIDE_BAR_TEXT}
-                length={2}
-                current={state}
-                image={LoginPageImage}
-                key={1}
-            />
-        },
-        {
-            id: 2,
-            element: <AuthSideSlide
-                heading={AUTH_SIDE_BAR_HEADING}
-                length={2}
-                current={state}
-                text={AUTH_SIDE_BAR_TEXT}
-                image={LoginPageImage2}
-                key={2}
-            />
-        }
-    ]
-
     useEffect(() => {
         setTimeout(() => {
-            if (state === 0) {
-                setState(1);
+            if (state >= 0 && state < AUTH_FORM_SIDE_SECTION_CONTENTS.length - 1) {
+                setState(state + 1);
             } else {
-                setState(0);
+                setState(state - 1);
             }
         }, 6000)
     }, [state])
@@ -113,8 +86,14 @@ export function AuthFormSideBar() {
             <FlexRow className={"w-full overflow-hidden"}>
                 <AnimatePresence exitBeforeEnter={true}>
                     {
-                        SlideList.map((each, key) => (
-                            key === state && each.element
+                        AUTH_FORM_SIDE_SECTION_CONTENTS.map((each, key) => (
+                            key === state &&
+                            <AuthSideSlide heading={each.title}
+                                           key={key}
+                                           length={AUTH_FORM_SIDE_SECTION_CONTENTS.length}
+                                           text={each.text}
+                                           image={each.image}
+                            />
                         ))
                     }
                 </AnimatePresence>

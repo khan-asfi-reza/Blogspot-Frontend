@@ -1,6 +1,6 @@
 import {Div} from "../../components/UI/Container";
 import {Anchor} from "../../components/UI/Button";
-import {IoAtCircleOutline} from "react-icons/io5";
+import {IoAtCircleOutline, IoLockClosedOutline} from "react-icons/io5";
 import useApi from "../../hook/useApi";
 import {AuthForm, AuthFormContainer, AuthFormFieldInterface, AuthFormHeader, passwordTextSwitch} from "./components";
 import {LOGIN_PAGE_TEXT} from "../../content";
@@ -28,7 +28,7 @@ export default function Login({state, setState}) {
         },
         {
             field: {
-                icon: <IoAtCircleOutline/>,
+                icon: <IoLockClosedOutline/>,
                 inputProps: {
                     type: "password",
                     name: "password",

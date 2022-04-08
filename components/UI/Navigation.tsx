@@ -1,8 +1,9 @@
 import {
+    IoAddCircleOutline,
     IoAlbumsOutline,
     IoChatboxOutline,
     IoHomeOutline,
-    IoMenuOutline,
+    IoNotifications,
     IoPersonAddOutline,
     IoShareOutline
 } from "react-icons/io5";
@@ -18,12 +19,13 @@ const navigation = [
     {name: <IoShareOutline/>, href: '#', current: false},
     {name: <IoAlbumsOutline/>, href: '#', current: false},
 ]
-const NavItem = ({href, children}) => (
+const NavItem = ({href, children, current}) => (
     <a
         href={href}
         className={classNames(
-            'text-gray-600  hover:bg-theme hover:text-white',
-            'md:p-4 p-2 sm:text-2xl text-xl font-medium border-b border-transparent rounded-full'
+            'text-gray-600  hover:bg-gray-200',
+            'md:p-3 p-2 sm:text-2xl text-xl font-medium border-b border-transparent ',
+            current ? "bg-theme text-white rounded-full" : "bg-transparent rounded-md"
         )}
     >
         {children}
@@ -47,7 +49,7 @@ export const Navigation = () => (
                     <div className="flex-full lg:col-span-1 md:col-span-2 md:block hidden">
                         <div className="flex justify-between ">
                             {navigation.map((item, key) => (
-                                <NavItem key={key} href={""}>
+                                <NavItem key={key} href={""} current={item.current}>
                                     {item.name}
                                 </NavItem>
                             ))}
@@ -55,21 +57,27 @@ export const Navigation = () => (
                     </div>
 
                     <div className={"flex justify-end items-center"}>
+
+                        <NavItem current={false} href={""}>
+                            <IoAddCircleOutline/>
+                        </NavItem>
+
+                        <NavItem current={false} href={""}>
+                            <IoNotifications/>
+                        </NavItem>
+
                         <Div className={"h-10 w-10 rounded-full bg-gray-300 mr-1"}>
 
                         </Div>
-                        <NavItem href={""}>
-                            <IoMenuOutline/>
-                        </NavItem>
                     </div>
                 </div>
             </div>
         </nav>
         <nav className={"fixed h-16 w-full bottom-0 bg-white md:hidden block border-t border-gray-200"}>
-            <div className={"max-w-7xl mx-auto px-8 xs:px-32 md:px-12"}>
-                <div className="flex space-x-4 justify-between ">
+            <div className={"max-w-7xl mx-auto px-8 xs:px-32 md:px-12 h-full"}>
+                <div className="flex space-x-4 justify-between items-center h-full">
                     {navigation.map((item, key) => (
-                        <NavItem key={key} href={""}>
+                        <NavItem current={item.current} key={key} href={""}>
                             {item.name}
                         </NavItem>
                     ))}

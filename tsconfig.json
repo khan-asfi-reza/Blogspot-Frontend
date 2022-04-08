@@ -22,7 +22,9 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "node_modules/cypress/types/cypress-global-vars.d.ts",
+    "node_modules/cypress/types/cypress-global-vars.d.ts"
   ],
   "exclude": [
     "node_modules"

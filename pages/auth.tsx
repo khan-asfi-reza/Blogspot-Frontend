@@ -1,4 +1,4 @@
-import AuthMain from "../elements/auth";
+import AuthMain from "../components/pages/auth";
 
 export default function Auth() {
     return (

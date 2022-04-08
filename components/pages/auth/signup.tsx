@@ -1,7 +1,8 @@
 import {IoAtCircleOutline, IoLockClosedOutline, IoLockOpenOutline, IoPerson} from "react-icons/io5";
-import useApi from "../../hook/useApi";
-import {AuthForm, AuthFormContainer, AuthFormFieldInterface, AuthFormHeader, passwordTextSwitch} from "./components";
-import {SIGNUP_PAGE_TEXT} from "../../content";
+import useApi from "../../../hook/useApi";
+import {AuthForm, AuthFormContainer, AuthFormHeader, passwordTextSwitch} from "./components";
+import {SIGNUP_PAGE_TEXT} from "../../../content";
+import {AuthFormFieldInterface} from "./interface";
 
 export default function Signup({state, setState}) {
 
@@ -89,10 +90,23 @@ export default function Signup({state, setState}) {
 
     }
 
+    const disabled = () => {
+        let disabled = Object.values(state).every(val => {
+            return !val;
+        });
+        if (state.password !== state.confirm_password) {
+            disabled = true;
+        }
+        return disabled;
+    }
+
     return (
         <AuthFormContainer>
-            <AuthFormHeader text={SIGNUP_PAGE_TEXT}/>
-            <AuthForm buttonText={"Sign Up"} loading={apiData.loading} formOnSubmit={formOnClick} fields={InputFields}/>
+            <>
+                <AuthFormHeader text={SIGNUP_PAGE_TEXT}/>
+                <AuthForm disabled={disabled()} buttonText={"Sign Up"} loading={apiData.loading}
+                          formOnSubmit={formOnClick} fields={InputFields}/>
+            </>
         </AuthFormContainer>
     )
 }

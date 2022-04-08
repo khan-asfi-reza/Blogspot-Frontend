@@ -1,21 +1,18 @@
-import {Col, Div, FlexRow, Grid} from "../../components/UI/Container";
-import Image from "next/image";
-import Logo from "../../assets/images/logo.png";
-import {SectionHeading, SmallText} from "../../components/UI/Typography";
-import {Form, Input, InputInterface} from "../../components/UI/Form";
+import {Col, Div, FlexRow, Grid} from "../../UI/Container";
+import Image, {StaticImageData} from "next/image";
+import Logo from "../../../assets/images/logo.png";
+import {SectionHeading, SmallText} from "../../UI/Typography";
+import {Form, Input} from "../../UI/Form";
 import classNames from "classnames";
 import {FaSpinner} from "react-icons/fa";
-import {Button} from "../../components/UI/Button";
+import {Button} from "../../UI/Button";
 import {FormEventHandler, MouseEventHandler, useEffect, useState} from "react";
 import {IoLockClosedOutline, IoLockOpenOutline} from "react-icons/io5";
-import {AUTH_FORM_SIDE_SECTION_CONTENTS, LOGIN_PAGE_HEADING} from "../../content";
+import {AUTH_FORM_SIDE_SECTION_CONTENTS, LOGIN_PAGE_HEADING} from "../../../content";
 import {AnimatePresence} from "framer-motion";
+import {range} from "../../../utils";
+import {AuthFormPropsInterface} from "./interface";
 
-function range(len) {
-    return Array.apply(null, Array(len)).map(function (_, i) {
-        return i;
-    });
-}
 
 // Auth Form Password To Text Switch Function
 export function passwordTextSwitch(ref, changeIcon) {
@@ -29,7 +26,13 @@ export function passwordTextSwitch(ref, changeIcon) {
 }
 
 // Auth Side Slide
-export function AuthSideSlide({image, heading, text, length}) {
+export function AuthSideSlide({image, heading, text, length}:
+                                  {
+                                      image: StaticImageData,
+                                      heading: string,
+                                      text: string,
+                                      length: number
+                                  }) {
     const variants = {
         exit: {x: 1000, opacity: 0},
         initial: {x: -1000, opacity: 0},
@@ -104,7 +107,7 @@ export function AuthFormSideBar() {
 
 
 // Container Of Auth Form
-export function AuthFormContainer({children}) {
+export function AuthFormContainer({children}: { children: JSX.Element }) {
     return (
         <Grid className={"grid w-full h-full relative flex-1"}>
             <Div className={"w-full"}>
@@ -156,34 +159,17 @@ export function AuthFormFooter({text, onClick, buttonText}:
             <Div className={"mt-10"}>
                 <SmallText className={"text-center text-gray-700"}>
                     {text}
-                    <span
-                        onClick={onClick}
-                        className={"ml-2 text-blue-600 cursor-pointer hover:text-blue-700 active:text-blue-700"}>
-                                {buttonText}
-                            </span>
+                    <button data-testid={"CHANGE_PAGE"}
+                            onClick={onClick}
+                            className={"ml-2 text-blue-600 cursor-pointer hover:text-blue-700 active:text-blue-700"}>
+                        {buttonText}
+                    </button>
                 </SmallText>
             </Div>
         </>
     )
 }
 
-/**
- * Interface for List of Form Fields
- */
-export interface AuthFormFieldInterface {
-    field: InputInterface,
-    row?: Array<InputInterface>,
-    rowClass?: string
-}
-
-
-interface AuthFormPropsInterface {
-    fields: Array<AuthFormFieldInterface>,
-    loading: boolean,
-    formOnSubmit: FormEventHandler<HTMLFormElement>,
-    children?: JSX.Element,
-    buttonText: string
-}
 
 /**
  * Authentication Page Form For Signing in and Signing up
@@ -192,8 +178,9 @@ interface AuthFormPropsInterface {
  * @param {JSX.Element}children - JSX Children
  * @param {boolean}loading - Is Button Loading or not, mainly to show if form is sending request to the api
  * @param {string}buttonText - Button Display Text
+ * @param {boolean}disabled - If button is disabled
  */
-export function AuthForm({fields, formOnSubmit, children, loading, buttonText}: AuthFormPropsInterface) {
+export function AuthForm({fields, formOnSubmit, children, loading, buttonText, disabled}: AuthFormPropsInterface) {
 
     return (
         <Form onSubmit={formOnSubmit} className={"mt-10"}>
@@ -211,9 +198,9 @@ export function AuthForm({fields, formOnSubmit, children, loading, buttonText}: 
                 )
             }
             {children}
-            <Button disabled={loading} type={"submit"}
+            <Button disabled={disabled} type={"submit"} data-testid={"ACTION_BUTTON"}
                     className={classNames("bg-theme justify-center w-full flex items-center mt-12",
-                        "text-white disabled:bg-emerald-500 md:px-10 px-8 hover:bg-blue-500 transition-all")}>
+                        "text-white disabled:bg-gray-400 md:px-10 px-8 hover:bg-blue-500 transition-all", loading && "bg-emerald-500")}>
                 {loading && <i className={"animate-spin mr-2"}><FaSpinner/></i>}
                 {buttonText}
             </Button>

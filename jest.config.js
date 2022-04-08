@@ -14,6 +14,7 @@ module.exports = {
         "<rootDir>/node_modules/",
         "<rootDir>/.next/",
         "<rootDir>/e2e/",
+        "<rootDir>/cypress/",
     ],
     testEnvironment: "jsdom",
     transform: {
@@ -23,4 +24,5 @@ module.exports = {
         "/node_modules/",
         "^.+\\.module\\.(css|sass|scss)$",
     ],
+
 };

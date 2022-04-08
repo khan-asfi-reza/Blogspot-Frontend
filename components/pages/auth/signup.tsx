@@ -1,8 +1,9 @@
 import {IoAtCircleOutline, IoLockClosedOutline, IoLockOpenOutline, IoPerson} from "react-icons/io5";
 import useApi from "../../../hook/useApi";
-import {AuthForm, AuthFormContainer, AuthFormHeader, passwordTextSwitch} from "./components";
+import {AuthContainer, AuthFormHeader, passwordTextSwitch} from "./components";
 import {SIGNUP_PAGE_TEXT} from "../../../content";
 import {AuthFormFieldInterface} from "./interface";
+import {AuthForm} from "./form";
 
 export default function Signup({state, setState}) {
 
@@ -101,12 +102,12 @@ export default function Signup({state, setState}) {
     }
 
     return (
-        <AuthFormContainer>
+        <AuthContainer>
             <>
                 <AuthFormHeader text={SIGNUP_PAGE_TEXT}/>
                 <AuthForm disabled={disabled()} buttonText={"Sign Up"} loading={apiData.loading}
                           formOnSubmit={formOnClick} fields={InputFields}/>
             </>
-        </AuthFormContainer>
+        </AuthContainer>
     )
 }

@@ -133,6 +133,7 @@ export const AbstractInput = forwardRef(
                     </Label>
                     <span
                         {...iconProps}
+                        data-testid={`${dataTestId}_icon`}
                         className={classNames("text-2xl peer-focus:text-sky-600 grid place-items-center px-2",
                             validation() === false ?
                                 inputProps.value && "text-emerald-500" : "text-red-500",
@@ -170,7 +171,8 @@ const IconActionInput = ({
                              iconOnClick,
                              label,
                              labelProps,
-                             containerProps
+                             containerProps,
+                             dataTestId
                          }: InputInterface) => {
     const inputRef = useRef(null);
     const [currentIcon, changeCurrentIcon] = useState(icon);
@@ -187,6 +189,7 @@ const IconActionInput = ({
                                },
                                ...iconProps
                            }}
+                           dataTestId={dataTestId}
                            containerProps={containerProps}
                            icon={currentIcon}
                            label={label}/>

@@ -142,16 +142,18 @@ export const AbstractInput = forwardRef(
                     {icon}
                 </span>
                 </FlexRow>
-                <Div className={"h-5 overflow-hidden"}>
-                    <Div animate={validator && validator() ? "open" : "closed"}
-                         variants={variants}>
-                        {
-                            <p className={"my-0 text-red-500 text-sm"}>
-                                {validator && validator()}
-                            </p>
-                        }
+                {
+                    validator !== undefined && <Div className={"h-5 overflow-hidden"}>
+                        <Div animate={validator && validator() ? "open" : "closed"}
+                             variants={variants}>
+                            {
+                                <p className={"my-0 text-red-500 text-sm"}>
+                                    {validator && validator()}
+                                </p>
+                            }
+                        </Div>
                     </Div>
-                </Div>
+                }
             </Div>
         )
     })

@@ -96,7 +96,7 @@ export default function AuthMain() {
 
     return (
         <Section id={"LOGIN_SECTION"}
-                 className={"min-h-screen relative  min-w-full bg-bgWhite  overflow-hidden transition-all"}>
+                 className={"min-h-screen relative  min-w-full bg-bgWhite overflow-hidden transition-all"}>
             {/* Background Images */}
             <BackgroundImages/>
             {/* Root Container */}

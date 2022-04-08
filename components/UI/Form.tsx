@@ -67,7 +67,7 @@ interface AbstractInputProps {
     containerProps?: HTMLAttributes<HTMLDivElement>,
     icon?: string | JSX.Element,
     label?: string,
-
+    dataTestId?: string
     validator?(): string | false
 }
 
@@ -76,7 +76,16 @@ interface AbstractInputProps {
  * @param {any} ref
  */
 export const AbstractInput = forwardRef(
-    ({inputProps, labelProps, iconProps, containerProps, icon, label, validator}: AbstractInputProps, ref: any) => {
+    ({
+         inputProps,
+         labelProps,
+         iconProps,
+         containerProps,
+         icon,
+         label,
+         validator,
+         dataTestId
+     }: AbstractInputProps, ref: any) => {
 
         // Animation variant for validator
         const variants = {
@@ -99,13 +108,14 @@ export const AbstractInput = forwardRef(
                     validation() === false ?
                         inputProps.value && "border-emerald-500" : "border-red-500"
                 )}>
-                    <InputField ref={ref}
-                                required={true}
-                                {...inputProps}
-                                className={classNames(
-                                    "text-gray-700 autofill-transparent peer",
-                                    "bg-transparent group-focus-within:border-emerald-500 transition-all",
-                                    "duration-500 w-full h-12", inputProps && inputProps.className)}
+                    <input ref={ref}
+                           required={true}
+                           {...inputProps}
+                           data-testid={dataTestId}
+                           className={classNames(
+                               "text-gray-700 autofill-transparent peer",
+                               "bg-transparent group-focus-within:border-emerald-500 transition-all",
+                               "duration-500 w-full h-12 active:outline-0 outline-0 px-2 focus:outline-0", inputProps && inputProps.className)}
                     />
                     <Label
                         {...labelProps}

@@ -1,12 +1,12 @@
 import {useReducer, useState} from "react";
-import {Col, Container, Div, FlexRow, Section} from "../../components/UI/Container";
+import {Col, Container, Div, FlexRow, Section} from "../../UI/Container";
 import Login from "./login";
 import Signup from "./signup";
 import {AuthFormFooter, AuthFormSideBar} from "./components";
 import classNames from "classnames";
 import Image from "next/image";
-import Circle from "../../assets/images/circle.png";
-import Shape from "../../assets/images/shape.png";
+import Circle from "../../../assets/images/circle.png";
+import Shape from "../../../assets/images/shape.png";
 
 import {AnimatePresence} from "framer-motion";
 import {
@@ -14,7 +14,7 @@ import {
     ACCOUNT_CREATION_TEXT,
     SWITCH_TO_LOGIN_BUTTON_TEXT,
     SWITCH_TO_LOGIN_TEXT
-} from "../../content";
+} from "../../../content";
 
 // Reducer Action Types
 export const CHANGE_LOGIN_STATE = "CHANGE_LOGIN_STATE";
@@ -97,19 +97,7 @@ export default function AuthMain() {
         <Section id={"LOGIN_SECTION"}
                  className={"min-h-screen relative  min-w-full bg-bgWhite  overflow-hidden transition-all"}>
             {/* Background Images */}
-            <Div className={"absolute h-[30rem] w-[30rem] top-5 left-5"}>
-                <Image src={Circle} alt={"Circle"} objectFit={"contain"} layout={"fill"}/>
-            </Div>
-            <Div className={"absolute h-60 w-60 top-5 right-36"}>
-                <Image src={Circle} alt={"Circle"} objectFit={"contain"} layout={"fill"}/>
-            </Div>
-            <Div className={"absolute h-[40rem] w-[40rem] bottom-0 right-0"}>
-                <Image src={Circle} alt={"Circle"} objectFit={"contain"} layout={"fill"}/>
-            </Div>
-            <Div className={"absolute h-16 w-16 top-10 right-5 z-10"}>
-                <Image src={Shape} alt={"Circle"} objectFit={"contain"} layout={"fill"}/>
-            </Div>
-
+            <BackgroundImages/>
             {/* Root Container */}
             <Container initial="hidden" key={"inner"}{...variants} transition={{type: 'linear', duration: 0.2}}
                        className={"max-w-7xl min-h-screen grid place-items-center px-4 z-30"}>
@@ -125,7 +113,9 @@ export default function AuthMain() {
                             <AnimatePresence exitBeforeEnter={true}>
                                 {
                                     current === 0 &&
-                                    <Div {...variants} transition={{duration: 0.3}}
+                                    <Div {...variants}
+                                         data-testid={"LOGIN"}
+                                         transition={{duration: 0.3}}
                                          className={"w-full flex-full"}
                                          key={"1"}
                                     >
@@ -135,6 +125,7 @@ export default function AuthMain() {
                                 {
                                     current === 1 &&
                                     <Div {...variants}
+                                         data-testid={"SIGNUP"}
                                          transition={{duration: 0.3}}
                                          className={"w-full flex-full"}
                                          key={"2"}
@@ -171,3 +162,20 @@ export default function AuthMain() {
 
     )
 }
+
+const BackgroundImages = () => (
+    <>
+        <Div className={"absolute h-[30rem] w-[30rem] top-5 left-5"}>
+            <Image src={Circle} alt={"Circle"} objectFit={"contain"} layout={"fill"}/>
+        </Div>
+        <Div className={"absolute h-60 w-60 top-5 right-36"}>
+            <Image src={Circle} alt={"Circle"} objectFit={"contain"} layout={"fill"}/>
+        </Div>
+        <Div className={"absolute h-[40rem] w-[40rem] bottom-0 right-0"}>
+            <Image src={Circle} alt={"Circle"} objectFit={"contain"} layout={"fill"}/>
+        </Div>
+        <Div className={"absolute h-16 w-16 top-10 right-5 z-10"}>
+            <Image src={Shape} alt={"Circle"} objectFit={"contain"} layout={"fill"}/>
+        </Div>
+    </>
+)

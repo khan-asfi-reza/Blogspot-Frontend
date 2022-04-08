@@ -1,9 +1,10 @@
-import {Div} from "../../components/UI/Container";
-import {Anchor} from "../../components/UI/Button";
+import {Div} from "../../UI/Container";
+import {Anchor} from "../../UI/Button";
 import {IoAtCircleOutline, IoLockClosedOutline} from "react-icons/io5";
-import useApi from "../../hook/useApi";
-import {AuthForm, AuthFormContainer, AuthFormFieldInterface, AuthFormHeader, passwordTextSwitch} from "./components";
-import {LOGIN_PAGE_TEXT} from "../../content";
+import useApi from "../../../hook/useApi";
+import {AuthForm, AuthFormContainer, AuthFormHeader, passwordTextSwitch} from "./components";
+import {LOGIN_PAGE_TEXT} from "../../../content";
+import {AuthFormFieldInterface} from "./interface";
 
 export default function Login({state, setState}) {
 
@@ -24,6 +25,7 @@ export default function Login({state, setState}) {
                     }
                     return false
                 },
+                dataTestId: "email"
             }
         },
         {
@@ -36,8 +38,10 @@ export default function Login({state, setState}) {
                     value: state.password
                 },
                 label: "Password",
-                iconOnClick: passwordTextSwitch
-            }
+                iconOnClick: passwordTextSwitch,
+                dataTestId: "password"
+            },
+
         },
     ]
 
@@ -52,14 +56,27 @@ export default function Login({state, setState}) {
 
     }
 
+    const disabled = () => {
+        return Object.values(state).every(val => {
+            return !val;
+        });
+    }
+
     return (
         <AuthFormContainer>
-            <AuthFormHeader text={LOGIN_PAGE_TEXT}/>
-            <AuthForm buttonText={"Login"} loading={apiData.loading} formOnSubmit={formOnClick} fields={InputFields}>
-                <Div className={"text-right"}>
-                    <Anchor className={"mt-4 hover:text-yellow-700"}>Forgot Password?</Anchor>
-                </Div>
-            </AuthForm>
+            <>
+                <AuthFormHeader text={LOGIN_PAGE_TEXT}/>
+                <AuthForm buttonText={"Login"}
+                          loading={apiData.loading}
+                          formOnSubmit={formOnClick}
+                          fields={InputFields}
+                          disabled={disabled()}
+                >
+                    <Div className={"text-right"}>
+                        <Anchor className={"mt-4 hover:text-yellow-700"}>Forgot Password?</Anchor>
+                    </Div>
+                </AuthForm>
+            </>
         </AuthFormContainer>
     )
 }

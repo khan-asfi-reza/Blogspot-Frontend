@@ -1,7 +1,5 @@
-name: Run All End To End Test
+name: End To End Test
 on:
-  push:
-    branches: [ main, development ]
   pull_request:
     branches: [ main, development ]
 jobs:

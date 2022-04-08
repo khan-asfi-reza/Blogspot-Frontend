@@ -2,9 +2,10 @@ import {Div} from "../../UI/Container";
 import {Anchor} from "../../UI/Button";
 import {IoAtCircleOutline, IoLockClosedOutline} from "react-icons/io5";
 import useApi from "../../../hook/useApi";
-import {AuthForm, AuthFormContainer, AuthFormHeader, passwordTextSwitch} from "./components";
+import {AuthContainer, AuthFormHeader, passwordTextSwitch} from "./components";
 import {LOGIN_PAGE_TEXT} from "../../../content";
 import {AuthFormFieldInterface} from "./interface";
+import {AuthForm} from "./form";
 
 export default function Login({state, setState}) {
 
@@ -37,6 +38,7 @@ export default function Login({state, setState}) {
                     onChange: setState,
                     value: state.password
                 },
+
                 label: "Password",
                 iconOnClick: passwordTextSwitch,
                 dataTestId: "password"
@@ -63,7 +65,7 @@ export default function Login({state, setState}) {
     }
 
     return (
-        <AuthFormContainer>
+        <AuthContainer>
             <>
                 <AuthFormHeader text={LOGIN_PAGE_TEXT}/>
                 <AuthForm buttonText={"Login"}
@@ -77,6 +79,6 @@ export default function Login({state, setState}) {
                     </Div>
                 </AuthForm>
             </>
-        </AuthFormContainer>
+        </AuthContainer>
     )
 }

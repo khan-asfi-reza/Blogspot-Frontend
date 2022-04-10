@@ -1,8 +1,8 @@
 import {useReducer, useState} from "react";
-import {Col, Container, Div, FlexRow, Section} from "@UI/Layout";
+import {Col, Container, Div, FlexRow, Section} from "../../components/UI/Layout";
 import Login from "./login";
 import Signup from "./signup";
-import {AuthFormFooter} from "@component/auth";
+import {AuthFormFooter} from "../../components/pages/auth";
 import classNames from "classnames";
 import Image from "next/image";
 import Circle from "@images/circle.png";
@@ -15,7 +15,7 @@ import {
     SWITCH_TO_LOGIN_BUTTON_TEXT,
     SWITCH_TO_LOGIN_TEXT
 } from "../../content";
-import {AuthFormSideBar} from "@component/auth/sideslide";
+import {AuthFormSideBar} from "../../components/pages/auth/sideslide";
 
 // Reducer Action Types
 export const CHANGE_LOGIN_STATE = "CHANGE_LOGIN_STATE";

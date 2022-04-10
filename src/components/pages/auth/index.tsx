@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Logo from "@images/logo.png";
-import {SectionHeading, SmallText} from "@UI/Typography";
+import {SectionHeading, SmallText} from "../../UI/Typography";
 import {MouseEventHandler} from "react";
 import {IoLockClosedOutline, IoLockOpenOutline} from "react-icons/io5";
-import {LOGIN_PAGE_HEADING} from "@content/index";
-import {Div, Grid} from "@UI/Layout";
+import {LOGIN_PAGE_HEADING} from "../../../content";
+import {Div, Grid} from "../../UI/Layout";
 
 
 // Auth Form Password To Text Switch Function

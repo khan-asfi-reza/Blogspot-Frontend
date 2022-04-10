@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "dev:up": "docker-compose -f docker/docker-compose.yml -f docker/docker-compose.dev.yml up",
+    "prod:up": "docker-compose -f docker/docker-compose.yml -f docker/docker-compose.prod.yml up"
   },
   "dependencies": {
     "@babel/preset-env": "^7.16.11",

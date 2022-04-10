@@ -12,7 +12,7 @@ import Image from "next/image";
 import classNames from "classnames";
 import Logo from "@images/logo.png";
 import {SecondaryInput} from "./Form";
-import {Div} from "@UI/Layout";
+import {Div} from "./Layout";
 
 const navigation = [
     {name: <IoHomeOutline/>, href: '#', current: true},

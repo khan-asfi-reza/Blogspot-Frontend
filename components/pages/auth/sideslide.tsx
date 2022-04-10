@@ -1,12 +1,12 @@
 // Auth Side Slide
 import Image, {StaticImageData} from "next/image";
-import {Col, Div, FlexRow} from "../../UI/Container";
 import {range} from "../../../utils";
 import classNames from "classnames";
 import {SectionHeading, SmallText} from "../../UI/Typography";
 import {useEffect, useState} from "react";
 import {AUTH_FORM_SIDE_SECTION_CONTENTS} from "../../../content";
 import {AnimatePresence} from "framer-motion";
+import {Col, Div, FlexRow} from "../../UI/Layout";
 
 
 export function AuthSideSlide({image, heading, text, length}:

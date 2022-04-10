@@ -1,5 +1,32 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@component/*": [
+        "components/pages/*"
+      ],
+      "@UI/*": [
+        "components/UI/*"
+      ],
+      "@containers/*": [
+        "containers/*"
+      ],
+      "@images/*": [
+        "assets/images/*"
+      ],
+      "@hooks/*": [
+        "hook/*"
+      ],
+      "@content/*": [
+        "content/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@const/*": [
+        "const/*"
+      ]
+    },
     "target": "es5",
     "lib": [
       "dom",

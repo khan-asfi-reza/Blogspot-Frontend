@@ -2,10 +2,10 @@ import React from "react";
 import {fireEvent, render} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Auth from "../../pages/auth";
-import {LOGIN_PAGE_TEXT} from "../../content";
+import {LOGIN_PAGE_TEXT} from "@content/index";
 import userEvent from "@testing-library/user-event";
-import Login from "../../containers/auth/login";
-import Signup from "../../containers/auth/signup";
+import Login from "@containers/auth/login";
+import Signup from "@containers/auth/signup";
 
 describe("Auth Page Initial Login", () => {
 

@@ -10,9 +10,9 @@ import {
 } from "react-icons/io5";
 import Image from "next/image";
 import classNames from "classnames";
-import Logo from "../../assets/images/logo.png";
-import {Div} from "./Container";
+import Logo from "@images/logo.png";
 import {SecondaryInput} from "./Form";
+import {Div} from "@UI/Layout";
 
 const navigation = [
     {name: <IoHomeOutline/>, href: '#', current: true},
@@ -40,9 +40,9 @@ export const Navigation = () => (
         <nav className={"w-full fixed bg-white border-b border-gray-200"}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div
-                    className="relative grid lg:grid-cols-3 md:grid-cols-4 grid-cols-2 md:gap-x-10 gap-x-2 items-center justify-between h-16">
+                    className="relative grid lg:grid-cols-3 md:grid-cols-4 grid-cols-5 md:gap-x-10 gap-x-2 items-center justify-between h-16">
 
-                    <div className="flex-shrink-0 flex items-center ">
+                    <div className="flex-shrink-0 gap-x-0.5 flex items-center md:col-span-1 col-span-3">
                         <Div className={"h-8 w-8 relative"}>
                             <Image src={Logo} alt={"Logo Image"} layout={"fill"} objectFit={"contain"}/>
                         </Div>
@@ -59,7 +59,7 @@ export const Navigation = () => (
                         </div>
                     </div>
 
-                    <div className={"flex justify-end items-center"}>
+                    <div className={"flex justify-end items-center md:col-span-1 col-span-2"}>
 
                         <NavItem current={false} href={""}>
                             <IoAddCircleOutline/>
@@ -69,7 +69,7 @@ export const Navigation = () => (
                             <IoNotifications/>
                         </NavItem>
 
-                        <Div className={"h-10 w-10 rounded-full bg-gray-300 mr-1"}>
+                        <Div className={"xs:h-10 xs:w-10 h-8 w-8 rounded-full bg-gray-300 mr-1"}>
 
                         </Div>
                     </div>

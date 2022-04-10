@@ -1,6 +1,6 @@
 import React from "react";
 import {render} from '@testing-library/react';
-import {Container} from "../../components/UI/Container";
+import {Container} from "@UI/Layout";
 import '@testing-library/jest-dom';
 
 describe("Container Component", () => {

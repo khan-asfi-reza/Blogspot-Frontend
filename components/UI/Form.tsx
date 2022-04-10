@@ -1,6 +1,7 @@
 import {forwardRef, HTMLAttributes, InputHTMLAttributes, MutableRefObject, useRef, useState} from "react";
 import classNames from "classnames";
-import {Div, FlexRow} from "./Container";
+import {Div} from "./Layout/Layout";
+import {FlexRow} from "./Layout/Flexbox";
 
 /**
  * UI Form
@@ -206,7 +207,7 @@ export const SecondaryInput = ({
                                }: InputInterface) => {
     return (
         <div {...containerProps}>
-            <FlexRow className={classNames("group relative rounded-lg bg-gray-50",
+            <FlexRow className={classNames("group relative rounded-full bg-gray-50",
                 "group border focus-within:border-sky-600 transition-all duration-500",
             )}>
                 <input required={true}
@@ -219,14 +220,14 @@ export const SecondaryInput = ({
                            "duration-500 w-full h-10 active:outline-0 outline-0 px-2 focus:outline-0", inputProps && inputProps.className)}
                 />
 
-                <span
+                <button
                     {...iconProps}
                     data-testid={`${dataTestId}_icon`}
-                    className={classNames("text-xl text-gray-500 peer-focus:text-sky-600 grid place-items-center px-2",
+                    className={classNames("text-xl text-gray-500 peer-focus:bg-sky-600 rounded-r-full peer-focus:text-white grid place-items-center px-2",
                         iconProps && iconProps.className
                     )}>
                     {icon}
-                </span>
+                </button>
             </FlexRow>
         </div>
     )

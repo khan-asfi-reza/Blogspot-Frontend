@@ -1,11 +1,9 @@
-import {Div} from "../../UI/Container";
-import {Anchor} from "../../UI/Button";
+import {Anchor} from "@UI/Button";
 import {IoAtCircleOutline, IoLockClosedOutline} from "react-icons/io5";
-import useApi from "../../../hook/useApi";
-import {AuthContainer, AuthFormHeader, passwordTextSwitch} from "./components";
-import {LOGIN_PAGE_TEXT} from "../../../content";
-import {AuthFormFieldInterface} from "./interface";
-import {AuthForm} from "./form";
+import useApi from "../../hook/useApi";
+import {AuthContainer, AuthForm, AuthFormFieldInterface, AuthFormHeader, passwordTextSwitch} from "@component/auth";
+import {LOGIN_PAGE_TEXT} from "../../content";
+import {Div} from "@UI/Layout";
 
 export default function Login({state, setState}) {
 

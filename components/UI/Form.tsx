@@ -15,17 +15,6 @@ export const Form = (props: HTMLAttributes<HTMLFormElement>) => {
 
 
 /**
- * UI InputField Group, Group of elements consisting of an input
- * @param {HTMLAttributes<HTMLFormElement>} props - div element props
- * @returns {JSX.Element} - Returns Div Element
- **/
-export const InputGroup = (props: HTMLAttributes<HTMLDivElement>) => (
-    <div {...props}>
-        {props.children}
-    </div>)
-
-
-/**
  * UI InputField, with forwarded ref, input has default padding and no outline on active state
  * @param {InputHTMLAttributes<HTMLInputElement>} props - Framer motion div element props
  * @param {HTMLInputElement} ref - Ref of the input that is being forwarded
@@ -102,7 +91,7 @@ export const AbstractInput = forwardRef(
 
 
         return (
-            <Div>
+            <div {...containerProps}>
                 <FlexRow className={classNames("group mt-4 relative rounded-lg bg-gray-50",
                     "group border focus-within:border-sky-600 transition-all duration-500",
                     validation() === false ?
@@ -154,7 +143,7 @@ export const AbstractInput = forwardRef(
                         </Div>
                     </Div>
                 }
-            </Div>
+            </div>
         )
     })
 
@@ -205,4 +194,40 @@ export function Input(props: InputInterface) {
         return <IconActionInput {...props}/>
     }
     return <AbstractInput {...props}/>
+}
+
+export const SecondaryInput = ({
+                                   inputProps,
+                                   iconProps,
+                                   containerProps,
+                                   icon,
+                                   label,
+                                   dataTestId
+                               }: InputInterface) => {
+    return (
+        <div {...containerProps}>
+            <FlexRow className={classNames("group relative rounded-lg bg-gray-50",
+                "group border focus-within:border-sky-600 transition-all duration-500",
+            )}>
+                <input required={true}
+                       {...inputProps}
+                       data-testid={dataTestId}
+                       placeholder={label}
+                       className={classNames(
+                           "text-gray-700 selection:bg-theme selection:text-white text-md autofill-transparent peer",
+                           "bg-transparent group-focus-within:border-emerald-500 transition-all",
+                           "duration-500 w-full h-10 active:outline-0 outline-0 px-2 focus:outline-0", inputProps && inputProps.className)}
+                />
+
+                <span
+                    {...iconProps}
+                    data-testid={`${dataTestId}_icon`}
+                    className={classNames("text-xl text-gray-500 peer-focus:text-sky-600 grid place-items-center px-2",
+                        iconProps && iconProps.className
+                    )}>
+                    {icon}
+                </span>
+            </FlexRow>
+        </div>
+    )
 }

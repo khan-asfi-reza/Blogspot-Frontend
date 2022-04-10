@@ -1,7 +1,7 @@
-import LoginImage from "../assets/images/login.png";
-import LoginImage2 from "../assets/images/login_2.png";
-import LoginImage3 from "../assets/images/login_3.png";
-import LoginImage4 from "../assets/images/login_4.png";
+import LoginImage from "@images/login.png";
+import LoginImage2 from "@images/login_2.png";
+import LoginImage3 from "@images/login_3.png";
+import LoginImage4 from "@images/login_4.png";
 
 // Global
 export const BRAND_NAME = "Firebolt";

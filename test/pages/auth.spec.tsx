@@ -4,8 +4,8 @@ import '@testing-library/jest-dom';
 import Auth from "../../pages/auth";
 import {LOGIN_PAGE_TEXT} from "../../content";
 import userEvent from "@testing-library/user-event";
-import Login from "../../components/pages/auth/login";
-import Signup from "../../components/pages/auth/signup";
+import Login from "../../containers/auth/login";
+import Signup from "../../containers/auth/signup";
 
 describe("Auth Page Initial Login", () => {
 

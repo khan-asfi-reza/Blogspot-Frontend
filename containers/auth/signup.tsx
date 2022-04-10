@@ -1,9 +1,7 @@
 import {IoAtCircleOutline, IoLockClosedOutline, IoLockOpenOutline, IoPerson} from "react-icons/io5";
-import useApi from "../../../hook/useApi";
-import {AuthContainer, AuthFormHeader, passwordTextSwitch} from "./components";
-import {SIGNUP_PAGE_TEXT} from "../../../content";
-import {AuthFormFieldInterface} from "./interface";
-import {AuthForm} from "./form";
+import useApi from "../../hook/useApi";
+import {AuthContainer, AuthForm, AuthFormFieldInterface, AuthFormHeader, passwordTextSwitch} from "@component/auth";
+import {SIGNUP_PAGE_TEXT} from "@content/index";
 
 export default function Signup({state, setState}) {
 

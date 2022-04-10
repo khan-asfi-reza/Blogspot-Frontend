@@ -1,9 +1,9 @@
 import {AuthFormPropsInterface} from "./interface";
 import {Form, Input} from "../../UI/Form";
-import {Grid} from "../../UI/Container";
 import classNames from "classnames";
 import {Button} from "../../UI/Button";
 import {FaSpinner} from "react-icons/fa";
+import {Grid} from "../../UI/Layout/Grid";
 
 /**
  * Authentication Page Form For Signing in and Signing up

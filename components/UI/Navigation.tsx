@@ -5,12 +5,14 @@ import {
     IoHomeOutline,
     IoNotifications,
     IoPersonAddOutline,
+    IoSearchOutline,
     IoShareOutline
 } from "react-icons/io5";
 import Image from "next/image";
 import classNames from "classnames";
 import Logo from "../../assets/images/logo.png";
 import {Div} from "./Container";
+import {SecondaryInput} from "./Form";
 
 const navigation = [
     {name: <IoHomeOutline/>, href: '#', current: true},
@@ -44,7 +46,8 @@ export const Navigation = () => (
                         <Div className={"h-8 w-8 relative"}>
                             <Image src={Logo} alt={"Logo Image"} layout={"fill"} objectFit={"contain"}/>
                         </Div>
-
+                        <SecondaryInput containerProps={{className: "lg:w-[80%] md:w-full"}} icon={<IoSearchOutline/>}
+                                        label={"Search"}/>
                     </div>
                     <div className="flex-full lg:col-span-1 md:col-span-2 md:block hidden">
                         <div className="flex justify-between ">

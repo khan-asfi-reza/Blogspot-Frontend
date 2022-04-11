@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,500;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,6 +9,11 @@
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
     scroll-padding: 5rem;
+}
+
+pre, code {
+    font-family: 'Source Code Pro', monospace !important;
+    @apply text-xl;
 }
 
 a, button {

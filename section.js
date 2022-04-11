@@ -15,5 +15,16 @@ module.exports = [
                 exampleMode: 'expand',
             }
         ]
+    },
+    {
+        name: "Form",
+        sections: [
+            {
+                name: "UI Form",
+                components: "src/components/UI/Form.tsx",
+                content: "docs/components/Form.md",
+                exampleMode: 'expand',
+            }
+        ]
     }
 ]

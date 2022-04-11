@@ -2,7 +2,7 @@ version: '3'
 services:
   firebolt:
     build:
-      context: docker
-      dockerfile: ./docker/Dockerfile
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"

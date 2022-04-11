@@ -3,7 +3,8 @@ const sections = require("./section.js");
 
 module.exports = {
     propsParser: require("react-docgen-typescript").parse,
-    resolver: require("react-docgen").resolver.findAllComponentDefinitions,
+    resolver: require('react-docgen').resolver
+        .findAllExportedComponentDefinitions,
     theme: {
         fontFamily: {
             base: '"Poppins", sans-serif',
@@ -27,7 +28,7 @@ module.exports = {
         path.resolve(__dirname, "section.js")
     ],
     components: "src/components/**/*.js",
-    require: [path.join(__dirname, 'docs/dist/dist.css')],
+    require: [path.join(__dirname, 'docs/dist/dist.css'), 'react-icons'],
     moduleAliases: {
         "@UI": path.resolve(__dirname, "src/components/UI/"),
     },

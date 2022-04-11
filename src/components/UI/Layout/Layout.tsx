@@ -4,22 +4,25 @@ import {MotionDivProps} from "./interface";
 
 /**
  * UI Section with framer motion support
+ * @component
  * @param {HTMLMotionProps<"section">} props - Framer motion section element props
  * @returns {JSX.Element} - Returns framer motion section component
  **/
-export const Section = (props: HTMLMotionProps<"section">): JSX.Element => {
+export function Section(props: HTMLMotionProps<"section">): JSX.Element {
     return (
         <motion.section {...props}>
             {props.children}
         </motion.section>
     )
 }
+
 /**
  * UI Div element with framer motion support
+ * @component
  * @param {HTMLMotionProps<"div">} props - Framer motion section element props
  * @returns {JSX.Element} - Returns framer motion div component
  **/
-export const Div = (props: MotionDivProps): JSX.Element => {
+export function Div(props: MotionDivProps): JSX.Element {
     return (
         <motion.div {...props}>
             {props.children}
@@ -70,3 +73,4 @@ export const Center = ({className, children, ...props}: MotionDivProps) => {
         </Div>
     )
 }
+

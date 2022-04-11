@@ -10,7 +10,10 @@
     "test": "jest",
     "cypress": "cypress open",
     "dev:up": "docker-compose -f docker/docker-compose.yml -f docker/docker-compose.dev.yml up",
-    "prod:up": "docker-compose -f docker/docker-compose.yml -f docker/docker-compose.prod.yml up"
+    "prod:up": "docker-compose -f docker/docker-compose.yml -f docker/docker-compose.prod.yml up",
+    "docs": "styleguidist server --config styleguide.config.js",
+    "tailwind:dist": "npx tailwindcss -w -c ./docs/tailwinddocs.config.js -i src/styles/globals.css -o docs/dist/dist.css --minify",
+    "docs:start": "nodemon --exec \"npm run docs\""
   },
   "dependencies": {
     "@babel/preset-env": "^7.16.11",
@@ -23,12 +26,14 @@
     "axios": "^0.26.1",
     "babel-jest": "^27.5.1",
     "classnames": "^2.3.1",
+    "cssnano": "^5.1.7",
     "enzyme": "^3.11.0",
     "file-loader": "^6.2.0",
     "framer-motion": "^6.2.9",
     "jest": "^27.5.1",
     "next": "12.1.4",
     "react": "18.0.0",
+    "react-docgen": "^5.4.0",
     "react-dom": "18.0.0",
     "react-icon": "^1.0.0",
     "react-icons": "^4.3.1",

@@ -207,23 +207,23 @@ export const SecondaryInput = ({
                                }: InputInterface) => {
     return (
         <div {...containerProps}>
-            <FlexRow className={classNames("group relative rounded-full bg-gray-50",
-                "group border focus-within:border-sky-600 transition-all duration-500",
+            <FlexRow className={classNames("group relative rounded-full bg-slate-200",
+                "group   transition-all duration-500",
             )}>
                 <input required={true}
                        {...inputProps}
                        data-testid={dataTestId}
                        placeholder={label}
                        className={classNames(
-                           "text-gray-700 selection:bg-theme selection:text-white text-md autofill-transparent peer",
+                           "text-gray-700 selection:bg-theme placeholder:text-md selection:text-white sm:text-md text-base autofill-transparent peer",
                            "bg-transparent group-focus-within:border-emerald-500 transition-all",
-                           "duration-500 w-full h-10 active:outline-0 outline-0 px-2 focus:outline-0", inputProps && inputProps.className)}
+                           "duration-500 w-full sm:h-10 h-9 active:outline-0 outline-0 px-2 focus:outline-0", inputProps && inputProps.className)}
                 />
 
                 <button
                     {...iconProps}
                     data-testid={`${dataTestId}_icon`}
-                    className={classNames("text-xl text-gray-500 peer-focus:bg-sky-600 rounded-r-full peer-focus:text-white grid place-items-center px-2",
+                    className={classNames("text-md text-gray-500 peer-focus:bg-blue-500 rounded-full peer-focus:text-white flex items-center px-3",
                         iconProps && iconProps.className
                     )}>
                     {icon}

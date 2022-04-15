@@ -1,4 +1,4 @@
-import {useReducer, useState} from "react";
+import {useEffect, useReducer, useState} from "react";
 import {Col, Container, Div, FlexRow, Section} from "../../components/UI/Layout";
 import Login from "./login";
 import Signup from "./signup";
@@ -15,7 +15,8 @@ import {
     SWITCH_TO_LOGIN_BUTTON_TEXT,
     SWITCH_TO_LOGIN_TEXT
 } from "../../content";
-import {AuthFormSideBar} from "../../components/pages/auth/sideslide";
+import {AuthFormSideBar} from "@component/auth";
+import {useRouter} from "next/router";
 
 // Reducer Action Types
 export const CHANGE_LOGIN_STATE = "CHANGE_LOGIN_STATE";
@@ -57,14 +58,26 @@ export default function AuthMain() {
     // Login and Signup Detail Saving reducer
     const [state, dispatch] = useReducer(authReducer, initialState)
 
+    const router = useRouter();
     // Change page from login to signup or signup to login
-    const changePage = () => {
+    const changePage = async () => {
         if (current === 0) {
             setCurrent(1);
+            await router.push("/auth/?page=signup", undefined, {shallow: true})
         } else {
             setCurrent(0);
+            await router.push("/auth/?page=login", undefined, {shallow: true})
         }
     }
+
+    useEffect(() => {
+        const {page} = router.query;
+        if (page === "signup") {
+            setCurrent(1);
+        } else if (page === "login") {
+            setCurrent(0);
+        }
+    }, [router.query])
 
     // Form Data Saving in the State Function
     const changeState = (action: string, e) => {

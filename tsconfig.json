@@ -5,6 +5,9 @@
       "@component/*": [
         "components/pages/*"
       ],
+      "@SharedComponents/*": [
+        "components/shared/*"
+      ],
       "@UI/*": [
         "components/UI/*"
       ],

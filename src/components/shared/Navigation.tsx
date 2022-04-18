@@ -1,11 +1,17 @@
 import {
     IoAddCircleOutline,
     IoAlbumsOutline,
+    IoCall,
     IoChatboxOutline,
+    IoChevronDown,
+    IoHelp,
     IoHomeOutline,
+    IoLogOutOutline,
     IoNotifications,
     IoPersonAddOutline,
+    IoPersonCircle,
     IoSearchOutline,
+    IoSettingsOutline,
     IoShareOutline
 } from "react-icons/io5";
 import Image from "next/image";
@@ -16,8 +22,8 @@ import {Div} from "@UI/Layout";
 import {FocusEvent, useState} from "react";
 import {AnimatePresence} from "framer-motion";
 import Link from "next/link";
-import Menu from "@UI/Menu";
 import {useRouter} from "next/router";
+import {Menu, MenuItem} from "@UI/Menu";
 
 const navigation = [
     {name: <IoHomeOutline/>, href: '/', current: true, route: "/"},
@@ -50,7 +56,7 @@ const NavItem = ({href, children, current, showActive}:
             className={classNames(
                 'text-gray-600 relative nav-link',
                 'md:p-4 p-2 box-border h-full grid place-items-center sm:text-2xl text-xl font-medium border-b border-transparent ',
-                current ? "hover:bg-blue-700 text-white rounded-full active-link" : "hover:bg-gray-200  bg-transparent rounded-md"
+                current ? "text-white rounded-full active-link" : "hover:bg-gray-200  bg-transparent rounded-md"
             )}
         >
 
@@ -137,25 +143,91 @@ export const Navigation = () => {
                                 <IoNotifications/>
                             </NavItem>
 
-                            <Menu/>
+                            <NavigationMenu route={async (href) => {
+                                await router.push(href)
+                            }}
+                                            menuItems={[
+                                                [
+                                                    {
+                                                        name: "Profile",
+                                                        href: '/profile',
+                                                        icon: <IoPersonCircle/>
+                                                    },
+                                                    {
+                                                        name: "Settings",
+                                                        href: '/settings',
+                                                        icon: <IoSettingsOutline/>
+                                                    }
+                                                ],
+                                                [
+                                                    {
+                                                        name: "Help",
+                                                        href: '/help',
+                                                        icon: <IoHelp/>
+                                                    },
+                                                    {
+                                                        name: "Support Center",
+                                                        href: '/support',
+                                                        icon: <IoCall/>
+                                                    },
+                                                ],
+                                                [
+                                                    {
+                                                        name: "Logout",
+                                                        href: '/logout',
+                                                        icon: <IoLogOutOutline/>
+                                                    },
+                                                ]
+                                            ]}
+                            />
                         </div>
                     </div>
                 </div>
             </header>
-
-            {/* Bottom Mobile Navigation */}
-            {/*<nav className={"fixed h-16 w-full bottom-0 bg-white md:hidden block border-t border-gray-200"}>*/}
-            {/*    <div className={"max-w-7xl mx-auto px-8 xs:px-32 md:px-12 h-full"}>*/}
-            {/*        <div className="flex space-x-4 justify-between items-center h-full">*/}
-            {/*            {navigation.map((item, key) => (*/}
-            {/*                <NavItem current={item.current} key={key} href={""}>*/}
-            {/*                    {item.name}*/}
-            {/*                </NavItem>*/}
-            {/*            ))}*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</nav>*/}
         </>
     )
 
+}
+
+const NavigationMenu = ({route, menuItems}:
+                            {
+                                route: CallableFunction,
+                                menuItems: Array<Array<{ href: string, icon: JSX.Element, name: string }>>
+                            }) => {
+    return (
+        <Menu
+            buttonClassName={classNames(
+                'text-gray-600 relative nav-link',
+                'md:p-4 p-2 box-border h-full grid place-items-center sm:text-2xl text-xl font-medium border-b border-transparent ',
+                "hover:bg-gray-200  bg-transparent rounded-md"
+            )}
+            buttonText={<span><IoChevronDown/></span>}>
+            {
+                menuItems.map((items, key) => (
+                    <div key={key} className="px-1 py-1">
+                        {
+                            items.map((item, k) => (
+                                <MenuItem key={k}>
+                                    {({active}) => (
+                                        <button
+                                            onClick={() => {
+                                                route(item.href)
+                                            }}
+                                            className={classNames(`group flex items-center rounded-md items-center w-full px-2 py-2 text-md`,
+                                                active ? 'bg-theme text-white' : 'text-gray-900')}
+                                        >
+                                            <span className={"mr-4 text-xl"}>
+                                                {item.icon}
+                                            </span>
+                                            {item.name}
+                                        </button>
+                                    )}
+                                </MenuItem>
+                            ))
+                        }
+                    </div>
+                ))
+            }
+        </Menu>
+    )
 }

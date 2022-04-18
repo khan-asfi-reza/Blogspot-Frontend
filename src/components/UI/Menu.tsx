@@ -1,34 +1,160 @@
-import {Div} from "@UI/Layout/Layout";
-import {useState} from "react";
-import {AnimatePresence} from "framer-motion";
-import {IoExitOutline} from "react-icons/io5";
+import {Fragment} from "react";
+import {Menu as HeadlessMenu, Transition} from "@headlessui/react";
 
-export default function Menu({}) {
-    const [isOpen, setIsOpen] = useState(false);
-
+export const Menu = ({buttonClassName, buttonText, children}:
+                         {
+                             buttonClassName: string,
+                             buttonText: string | JSX.Element,
+                             children: JSX.Element[] | JSX.Element
+                         }) => {
     return (
-        <Div onClick={() => {
-            setIsOpen(!isOpen)
-        }} className={"xs:h-10 xs:w-10 h-8 w-8 rounded-full bg-gray-300 mr-1 relative"}>
-            <AnimatePresence exitBeforeEnter={true}>
-                {
-                    isOpen &&
-                    <Div key={"menuKey"}
-                         initial={{scale: 0.95, opacity: 0}}
-                         animate={{scale: 1, opacity: 1}}
-                         exit={{scale: 0.95, opacity: 0}}
-                         transition={{duration: 0.075}}
-                         className={"absolute top-[110%] p-3 right-0 w-52 bg-slate-200 rounded-md"}>
-                        <button className={"flex items-center justify-between w-full"}>
-                            <span>
-                                Logout
-                            </span>
-                            <IoExitOutline/>
-                        </button>
-                        <hr className={"w-full border-slate-300 my-2"}/>
-                    </Div>
-                }
-            </AnimatePresence>
-        </Div>
+        <div className="">
+            <HeadlessMenu as="div" className="relative inline-block text-left">
+                {({open}) => (
+                    <>
+                        <div>
+                            <HeadlessMenu.Button className={buttonClassName}>
+                                {buttonText}
+                            </HeadlessMenu.Button>
+                        </div>
+                        {
+                            open &&
+                            <Transition
+                                as={Fragment}
+                                enter="transition ease-out duration-100"
+                                enterFrom="transform opacity-0 scale-95"
+                                enterTo="transform opacity-100 scale-100"
+                                leave="transition ease-in duration-75"
+                                leaveFrom="transform opacity-100 scale-100"
+                                leaveTo="transform opacity-0 scale-95"
+                            >
+                                <HeadlessMenu.Items
+                                    className="absolute right-0 z-30 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                    {children}
+                                </HeadlessMenu.Items>
+                            </Transition>
+                        }
+                    </>
+                )}
+            </HeadlessMenu>
+        </div>
+    )
+}
+
+export const MenuItem = HeadlessMenu.Item;
+
+
+function EditInactiveIcon(props) {
+    return (
+        <svg
+            {...props}
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M4 13V16H7L16 7L13 4L4 13Z"
+                fill="#EDE9FE"
+                stroke="#A78BFA"
+                strokeWidth="2"
+            />
+        </svg>
+    )
+}
+
+function EditActiveIcon(props) {
+    return (
+        <svg
+            {...props}
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M4 13V16H7L16 7L13 4L4 13Z"
+                fill="#8B5CF6"
+                stroke="#C4B5FD"
+                strokeWidth="2"
+            />
+        </svg>
+    )
+}
+
+function DuplicateInactiveIcon(props) {
+    return (
+        <svg
+            {...props}
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M4 4H12V12H4V4Z"
+                fill="#EDE9FE"
+                stroke="#A78BFA"
+                strokeWidth="2"
+            />
+            <path
+                d="M8 8H16V16H8V8Z"
+                fill="#EDE9FE"
+                stroke="#A78BFA"
+                strokeWidth="2"
+            />
+        </svg>
+    )
+}
+
+function DuplicateActiveIcon(props) {
+    return (
+        <svg
+            {...props}
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M4 4H12V12H4V4Z"
+                fill="#8B5CF6"
+                stroke="#C4B5FD"
+                strokeWidth="2"
+            />
+            <path
+                d="M8 8H16V16H8V8Z"
+                fill="#8B5CF6"
+                stroke="#C4B5FD"
+                strokeWidth="2"
+            />
+        </svg>
+    )
+}
+
+function ArchiveInactiveIcon(props) {
+    return (
+        <svg
+            {...props}
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <rect
+                x="5"
+                y="8"
+                width="10"
+                height="8"
+                fill="#EDE9FE"
+                stroke="#A78BFA"
+                strokeWidth="2"
+            />
+            <rect
+                x="4"
+                y="4"
+                width="12"
+                height="4"
+                fill="#EDE9FE"
+                stroke="#A78BFA"
+                strokeWidth="2"
+            />
+            <path d="M8 12H12" stroke="#A78BFA" strokeWidth="2"/>
+        </svg>
     )
 }

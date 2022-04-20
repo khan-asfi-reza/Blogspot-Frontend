@@ -1,19 +1,4 @@
-import {
-    IoAddCircleOutline,
-    IoAlbumsOutline,
-    IoCall,
-    IoChatboxOutline,
-    IoChevronDown,
-    IoHelp,
-    IoHomeOutline,
-    IoLogOutOutline,
-    IoNotifications,
-    IoPersonAddOutline,
-    IoPersonCircle,
-    IoSearchOutline,
-    IoSettingsOutline,
-    IoShareOutline
-} from "react-icons/io5";
+import {IoAddCircleOutline, IoChevronDown, IoNotifications, IoSearchOutline} from "react-icons/io5";
 import Image from "next/image";
 import classNames from "classnames";
 import Logo from "@images/logo.png";
@@ -24,15 +9,7 @@ import {AnimatePresence} from "framer-motion";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {Menu, MenuItem} from "@UI/Menu";
-
-const navigation = [
-    {name: <IoHomeOutline/>, href: '/', current: true, route: "/"},
-    {name: <IoPersonAddOutline/>, href: '/friends', current: false, route: "/friends"},
-    {name: <IoChatboxOutline/>, href: '#', current: false, route: "home"},
-    {name: <IoShareOutline/>, href: '#', current: false, route: "home"},
-    {name: <IoAlbumsOutline/>, href: '#', current: false, route: "home"},
-]
-
+import {moreMenu, navigation} from "@const/navigation";
 
 const Indicator = ({className, style}) => (
     <svg className={classNames(className, "indicator")} style={style} width="94" height="56"
@@ -54,9 +31,11 @@ const NavItem = ({href, children, current, showActive}:
     <Link href={href} passHref>
         <a
             className={classNames(
-                'text-gray-600 relative nav-link',
-                'md:p-4 p-2 box-border h-full grid place-items-center sm:text-2xl text-xl font-medium border-b border-transparent ',
-                current ? "text-white rounded-full active-link" : "hover:bg-gray-200  bg-transparent rounded-md"
+                'relative nav-link',
+                'md:p-4 p-2 box-border h-full',
+                'grid place-items-center sm:text-2xl text-xl font-medium border-b border-transparent ',
+                showActive && current ? "group text-white rounded-full active-link"
+                    : "hover:bg-gray-200 text-gray-600  bg-transparent rounded-md"
             )}
         >
 
@@ -65,7 +44,8 @@ const NavItem = ({href, children, current, showActive}:
             {
                 (showActive && current) &&
                 <Indicator style={{}}
-                           className={"absolute transition-all md:rotate-180 -z-10 left-1/2 -translate-x-1/2 md:top-0 bottom-0 transform fill-theme"}/>
+                           className={classNames("group-hover:scale-125 absolute transition-all md:rotate-180",
+                               "-z-10 left-1/2 -translate-x-1/2 md:top-0 bottom-0 transform fill-theme")}/>
             }
         </a>
     </Link>
@@ -146,39 +126,7 @@ export const Navigation = () => {
                             <NavigationMenu route={async (href) => {
                                 await router.push(href)
                             }}
-                                            menuItems={[
-                                                [
-                                                    {
-                                                        name: "Profile",
-                                                        href: '/profile',
-                                                        icon: <IoPersonCircle/>
-                                                    },
-                                                    {
-                                                        name: "Settings",
-                                                        href: '/settings',
-                                                        icon: <IoSettingsOutline/>
-                                                    }
-                                                ],
-                                                [
-                                                    {
-                                                        name: "Help",
-                                                        href: '/help',
-                                                        icon: <IoHelp/>
-                                                    },
-                                                    {
-                                                        name: "Support Center",
-                                                        href: '/support',
-                                                        icon: <IoCall/>
-                                                    },
-                                                ],
-                                                [
-                                                    {
-                                                        name: "Logout",
-                                                        href: '/logout',
-                                                        icon: <IoLogOutOutline/>
-                                                    },
-                                                ]
-                                            ]}
+                                            menuItems={moreMenu}
                             />
                         </div>
                     </div>

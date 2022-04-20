@@ -1,8 +1,8 @@
 import {useEffect, useReducer, useState} from "react";
-import {Col, Container, Div, FlexRow, Section} from "../../components/UI/Layout";
+import {Col, Container, Div, FlexRow, Section} from "@UI/Layout";
 import Login from "./login";
 import Signup from "./signup";
-import {AuthFormFooter} from "../../components/pages/auth";
+import {AuthFormFooter, AuthFormSideBar} from "@component/auth";
 import classNames from "classnames";
 import Image from "next/image";
 import Circle from "@images/circle.png";
@@ -15,7 +15,6 @@ import {
     SWITCH_TO_LOGIN_BUTTON_TEXT,
     SWITCH_TO_LOGIN_TEXT
 } from "../../content";
-import {AuthFormSideBar} from "@component/auth";
 import {useRouter} from "next/router";
 
 // Reducer Action Types
@@ -76,8 +75,12 @@ export default function AuthMain() {
             setCurrent(1);
         } else if (page === "login") {
             setCurrent(0);
+        } else {
+            setCurrent(0);
+            router.push("/auth/?page=login", undefined, {shallow: true})
+                .then()
         }
-    }, [router.query])
+    }, [router, router.query])
 
     // Form Data Saving in the State Function
     const changeState = (action: string, e) => {

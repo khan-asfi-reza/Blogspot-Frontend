@@ -6,17 +6,27 @@ import {LOGIN_PAGE_TEXT} from "../../src/content/index";
 import userEvent from "@testing-library/user-event";
 import Login from "../../src/containers/auth/login";
 import Signup from "../../src/containers/auth/signup";
+import {RouterContext} from "next/dist/shared/lib/router-context";
+import {createMockRouter} from "../mock/mockRouter";
 
 describe("Auth Page Initial Login", () => {
 
     test('Initial Render Must have login page', () => {
-        const {getByText} = render(<Auth/>);
+        const {getByText} = render(
+            <RouterContext.Provider value={createMockRouter({query: {page: "login"}})}>
+                <Auth/>
+            </RouterContext.Provider>
+        );
         const text = getByText(LOGIN_PAGE_TEXT);
         expect(text).toBeInTheDocument();
     })
 
     test("Check Button click change page", async () => {
-        const {getByTestId} = render(<Auth/>);
+        const {getByTestId} = render(
+            <RouterContext.Provider value={createMockRouter({query: {page: "login"}})}>
+                <Auth/>
+            </RouterContext.Provider>
+        );
         const button = getByTestId("CHANGE_PAGE");
         expect(button).toBeInTheDocument();
         fireEvent.click(button)

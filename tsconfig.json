@@ -17,6 +17,9 @@
       "@images/*": [
         "assets/images/*"
       ],
+      "@assets/*": [
+        "assets/*"
+      ],
       "@hooks/*": [
         "hook/*"
       ],

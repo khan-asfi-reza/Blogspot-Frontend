@@ -9,8 +9,8 @@
     "lint": "next lint",
     "test": "jest",
     "cypress": "cypress open",
-    "dev:up": "docker-compose -f docker-compose.yml -f docker-compose.dev.yml up",
-    "prod:up": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up",
+    "dev:up": "docker-compose -f docker-compose.yml -f Docker/docker-compose.dev.yml up",
+    "prod:up": "docker-compose -f docker-compose.yml -f Docker/docker-compose.prod.yml up",
     "docs": "styleguidist server --config styleguide.config.js",
     "tailwind:dist": "npx tailwindcss -w -c ./docs/tailwinddocs.config.js -i src/styles/globals.css -o docs/dist/dist.css --minify",
     "docs:start": "nodemon --exec \"npm run docs\""
@@ -32,6 +32,7 @@
     "framer-motion": "^6.2.9",
     "jest": "^27.5.1",
     "next": "12.1.4",
+    "next-themes": "^0.1.1",
     "react": "18.0.0",
     "react-blaze-carousel": "^0.1.0",
     "react-docgen": "^5.4.0",

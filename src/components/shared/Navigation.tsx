@@ -1,15 +1,14 @@
-import {IoAddCircleOutline, IoChevronDown, IoNotifications, IoSearchOutline} from "react-icons/io5";
+import {IoChevronDown, IoLaptopOutline, IoMoonSharp, IoNotifications, IoSunnySharp} from "react-icons/io5";
 import Image from "next/image";
 import classNames from "classnames";
 import Logo from "@images/logo.png";
-import {SecondaryInput} from "@UI/Form";
 import {Div} from "@UI/Layout";
-import {FocusEvent, useState} from "react";
-import {AnimatePresence} from "framer-motion";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {Menu, MenuItem} from "@UI/Menu";
 import {moreMenu, navigation} from "@const/navigation";
+import {useTheme} from "next-themes";
+import {Text} from "@UI/Typography";
 
 const Indicator = ({className, style}) => (
     <svg className={classNames(className, "indicator")} style={style} width="94" height="56"
@@ -19,6 +18,7 @@ const Indicator = ({className, style}) => (
         <path d="M70 20C70 20 66 55.9999 46 56L94 55.9997C76 55.9998 70 20 70 20Z"/>
     </svg>
 )
+
 
 const NavItem = ({href, children, current, showActive}:
                      {
@@ -53,18 +53,46 @@ const NavItem = ({href, children, current, showActive}:
 
 
 export const Navigation = () => {
-
-    const [isSearchActive, setIsSearchActive] = useState(false);
     const router = useRouter();
-    const onFocus = () => {
-        setIsSearchActive(true);
-    }
+    const {resolvedTheme, setTheme} = useTheme()
 
-    const onBlur = (e: FocusEvent<HTMLInputElement>) => {
-        if (!e.target.value) {
-            setIsSearchActive(false)
+    const ThemeMenu = [
+        [
+            {
+                name: "Light",
+                icon: <IoSunnySharp/>,
+                onClick: () => {
+                    setTheme("light")
+                }
+            },
+            {
+                name: "Dark",
+                icon: <IoMoonSharp/>,
+                onClick: () => {
+                    setTheme("dark")
+                }
+            },
+            {
+                name: "System",
+                icon: <IoLaptopOutline/>,
+                onClick: () => {
+                    setTheme("system")
+                }
+            },
+        ]
+    ]
+
+    const LogoIcon = () => {
+        switch (resolvedTheme) {
+            case "dark":
+                return <IoSunnySharp/>
+            case "light":
+                return <IoMoonSharp/>
+            default:
+                return <IoSunnySharp/>
         }
     }
+
 
     return (
         <>
@@ -74,25 +102,14 @@ export const Navigation = () => {
                         className="relative grid lg:grid-cols-3 md:grid-cols-4 grid-cols-5 lg:gap-x-10 md:gap-x-2 gap-x-3 items-center justify-between h-16">
                         <div
                             className="flex-shrink-0 gap-x-0.5 flex items-center lg:col-span-1 md:col-span-1 col-span-3 overflow-hidden">
-                            <AnimatePresence exitBeforeEnter={true}>
-                                {!isSearchActive &&
-                                    <Div key={"searchIcon"}
-                                         initial={{x: 1000,}}
-                                         exit={{x: 1000, display: "none"}}
-                                         animate={{x: 0,}}
-                                         className={"h-8 w-8 relative"}>
-                                        <Image src={Logo} alt={"Logo Image"} layout={"fill"} objectFit={"contain"}/>
-                                    </Div>
-                                }
-                            </AnimatePresence>
-                            <Div
-                                className={classNames("lg:w-[80%] md:w-full transition-all", isSearchActive && "lg:w-[90%]")}>
-                                <SecondaryInput containerProps={{className: "w-full"}}
-                                                inputProps={{onFocus: onFocus, onBlur: onBlur}}
-                                                icon={
-                                                    <IoSearchOutline/>
-                                                }
-                                                label={"Search content, friends"}/>
+                            <Div key={"searchIcon"}
+                                 exit={{x: 1000, display: "none"}}
+                                 animate={{x: 0,}}
+                                 className={"h-8 w-8 relative"}>
+                                <Image src={Logo} alt={"Logo Image"} layout={"fill"} objectFit={"contain"}/>
+                            </Div>
+                            <Div>
+                                <Text className={"font-bold "}>FireBolt</Text>
                             </Div>
                         </div>
                         <nav
@@ -116,18 +133,20 @@ export const Navigation = () => {
                         <div className={"flex justify-end items-center lg:col-span-1 md:col-span-1 col-span-2"}>
 
                             <NavItem current={false} href={""}>
-                                <IoAddCircleOutline/>
-                            </NavItem>
-
-                            <NavItem current={false} href={""}>
                                 <IoNotifications/>
                             </NavItem>
 
-                            <NavigationMenu route={async (href) => {
-                                await router.push(href)
-                            }}
-                                            menuItems={moreMenu}
-                            />
+                            <NavigationMenu icon={<LogoIcon/>} menuItems={ThemeMenu}
+                                            onClick={async (href) => {
+                                                await router.push(href)
+                                            }}/>
+
+                            <NavigationMenu icon={<IoChevronDown/>} menuItems={moreMenu}
+                                            onClick={async (href) => {
+                                                await router.push(href)
+                                            }}/>
+
+
                         </div>
                     </div>
                 </div>
@@ -137,10 +156,11 @@ export const Navigation = () => {
 
 }
 
-const NavigationMenu = ({route, menuItems}:
+const NavigationMenu = ({onClick, menuItems, icon}:
                             {
-                                route: CallableFunction,
-                                menuItems: Array<Array<{ href: string, icon: JSX.Element, name: string }>>
+                                onClick: CallableFunction,
+                                menuItems: Array<Array<{ href?: string, icon: JSX.Element, name: string, onClick?: Function }>>,
+                                icon: JSX.Element
                             }) => {
     return (
         <Menu
@@ -149,7 +169,7 @@ const NavigationMenu = ({route, menuItems}:
                 'md:p-4 p-2 box-border h-full grid place-items-center sm:text-2xl text-xl font-medium border-b border-transparent ',
                 "hover:bg-gray-200  bg-transparent rounded-md"
             )}
-            buttonText={<span><IoChevronDown/></span>}>
+            buttonText={<span>{icon}</span>}>
             {
                 menuItems.map((items, key) => (
                     <div key={key} className="px-1 py-1">
@@ -159,7 +179,11 @@ const NavigationMenu = ({route, menuItems}:
                                     {({active}) => (
                                         <button
                                             onClick={() => {
-                                                route(item.href)
+                                                if (item.onClick) {
+                                                    item.onClick()
+                                                } else {
+                                                    onClick(item.href)
+                                                }
                                             }}
                                             className={classNames(`group flex items-center rounded-md items-center w-full px-2 py-2 text-md`,
                                                 active ? 'bg-theme text-white' : 'text-gray-900')}

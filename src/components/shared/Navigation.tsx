@@ -96,7 +96,7 @@ export const Navigation = () => {
 
     return (
         <>
-            <header className={"w-full sticky top-0 bg-white border-b border-gray-200"}>
+            <header className={"w-full sticky z-50 top-0 bg-white border-b border-gray-200"}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div
                         className="relative grid lg:grid-cols-3 md:grid-cols-4 grid-cols-5 lg:gap-x-10 md:gap-x-2 gap-x-3 items-center justify-between h-16">

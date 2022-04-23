@@ -153,6 +153,7 @@ AbstractInput.displayName = "AbstractInput"
 // If clicking the icon will change attributes of the input group, this interface will be used
 export interface InputInterface extends AbstractInputProps {
     iconOnClick?(ref?: MutableRefObject<any>, changeIconState?: Function, iconState?: any): void,
+    children?: JSX.Element
 }
 
 // Whether the input group will call to action to the icon
@@ -203,13 +204,22 @@ export const SecondaryInput = ({
                                    containerProps,
                                    icon,
                                    label,
-                                   dataTestId
+                                   dataTestId,
+                                   children
                                }: InputInterface) => {
     return (
-        <div {...containerProps}>
-            <FlexRow className={classNames("group relative rounded-md bg-gray-200",
-                "group  transition-all duration-500",
+        <div>
+            <div {...containerProps} className={classNames("flex flex-row group relative rounded-full",
+                "group  transition-all duration-500", containerProps.className
             )}>
+                <div
+                    {...iconProps}
+                    data-testid={`${dataTestId}_icon`}
+                    className={classNames("text-lg text-gray-500 duration-500 justify-center transition-all peer-focus:bg-theme rounded-md peer-focus:text-white flex items-center px-2",
+                        iconProps && iconProps.className
+                    )}>
+                    {icon}
+                </div>
                 <input required={true}
                        {...inputProps}
                        data-testid={dataTestId}
@@ -217,18 +227,12 @@ export const SecondaryInput = ({
                        className={classNames(
                            "text-gray-700 selection:bg-theme placeholder:text-sm selection:text-white sm:text-sm text-sm autofill-transparent peer",
                            "bg-transparent group-focus-within:border-emerald-500 transition-all",
-                           "duration-500 w-full sm:h-10 h-9 active:outline-0 outline-0 px-4 focus:outline-0", inputProps && inputProps.className)}
+                           "duration-500 w-full sm:h-10 h-9 active:outline-0 outline-0 px-1 focus:outline-0", inputProps && inputProps.className)}
                 />
 
-                <button
-                    {...iconProps}
-                    data-testid={`${dataTestId}_icon`}
-                    className={classNames("text-md text-gray-500 duration-500 transition-all peer-focus:bg-blue-500 rounded-md peer-focus:text-white flex items-center px-3",
-                        iconProps && iconProps.className
-                    )}>
-                    {icon}
-                </button>
-            </FlexRow>
+                {children}
+
+            </div>
         </div>
     )
 }

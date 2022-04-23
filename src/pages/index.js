@@ -17,8 +17,8 @@ export default function Home() {
         <main className={"bg-gray-100 min-h-screen"}>
             <Navigation/>
             <section className={"pt-12 container max-w-7xl mx-auto"}>
-                <div className={"grid lg:grid-cols-3 md: gap-20"}>
-                    <div className={"grid gap-10 md:col-span-2"}>
+                <div className={"grid lg:grid-cols-3 md:grid-cols-1 gap-20"}>
+                    <div className={"grid gap-10 lg:col-span-2 lg:px-0 sm:px-8 px-4 relative lg:order-1 order-2"}>
                         <Content name={"David Silva"}
                                  title={"Why not to use PHP"}
                                  tags={["React"]}
@@ -39,7 +39,7 @@ export default function Home() {
                                  image={Code}
                                  profilePicture={Person}/>
                     </div>
-                    <div className={"flex flex-col gap-y-10"}>
+                    <div className={"flex flex-col gap-y-10 lg:order-2 order-1 md:px-8 px-4"}>
                         <div className={"relative z-30"}>
                             <SecondaryInput containerProps={{className: "bg-[#fff]"}}
                                             icon={<IoSearchOutline/>}
@@ -61,7 +61,7 @@ export default function Home() {
                                     <Div initial={{opacity: 0, scale: 0.95}}
                                          animate={{opacity: 1, scale: 1}}
                                          exit={{opacity: 0, scale: 0.95}}
-                                         className={"absolute grid gap-y-4 top-[110%] outline outline-gray-100 ring-1 bg-white w-full z-10 rounded-lg py-4 border border-gray-100"}>
+                                         className={"absolute grid gap-y-4 top-[110%] outline outline-gray-100 -left-[5%] ring-1 bg-white w-[110%] z-10 rounded-lg py-4 border border-gray-100"}>
                                         <button
                                             className={"flex group items-center  gap-x-4 px-4 hover:bg-theme py-1 rounded-lg"}>
                                             <div className={"h-10 w-10 rounded-full overflow-hidden relative"}>
@@ -90,7 +90,7 @@ export default function Home() {
                             </AnimatePresence>
                         </div>
 
-                        <div className={"w-full bg-white rounded-xl grid gap-4 py-4"}>
+                        <div className={"w-full bg-white rounded-xl grid gap-4 py-4 "}>
                             <h2 className={"text-xl font-bold text-black px-4"}>
                                 Trends
                             </h2>

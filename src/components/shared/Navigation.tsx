@@ -1,14 +1,10 @@
-import {IoChevronDown, IoLaptopOutline, IoMoonSharp, IoNotifications, IoSunnySharp} from "react-icons/io5";
-import Image from "next/image";
+import {IoLaptopOutline, IoMoonSharp, IoSunnySharp} from "react-icons/io5";
 import classNames from "classnames";
-import Logo from "@images/logo.png";
-import {Div} from "@UI/Layout";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {Menu, MenuItem} from "@UI/Menu";
-import {moreMenu, navigation} from "@const/navigation";
 import {useTheme} from "next-themes";
-import {Text} from "@UI/Typography";
+import {useState} from "react";
 
 const Indicator = ({className, style}) => (
     <svg className={classNames(className, "indicator")} style={style} width="94" height="56"
@@ -55,6 +51,7 @@ const NavItem = ({href, children, current, showActive}:
 export const Navigation = () => {
     const router = useRouter();
     const {resolvedTheme, setTheme} = useTheme()
+    const [searchOpen, setSearchOpen] = useState(false);
 
     const ThemeMenu = [
         [
@@ -96,58 +93,10 @@ export const Navigation = () => {
 
     return (
         <>
-            <header className={"w-full sticky z-50 top-0 bg-white border-b border-gray-200"}>
+            <header className={"w-full sticky z-50 top-0 left-0 bg-white border-b border-gray-100 h-screen"}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div
-                        className="relative grid lg:grid-cols-3 md:grid-cols-4 grid-cols-5 lg:gap-x-10 md:gap-x-2 gap-x-3 items-center justify-between h-16">
-                        <div
-                            className="flex-shrink-0 gap-x-0.5 flex items-center lg:col-span-1 md:col-span-1 col-span-3 overflow-hidden">
-                            <Div key={"searchIcon"}
-                                 exit={{x: 1000, display: "none"}}
-                                 animate={{x: 0,}}
-                                 className={"h-8 w-8 relative"}>
-                                <Image src={Logo} alt={"Logo Image"} layout={"fill"} objectFit={"contain"}/>
-                            </Div>
-                            <Div>
-                                <Text className={"font-bold "}>FireBolt</Text>
-                            </Div>
-                        </div>
-                        <nav
-                            className="md:flex-full md:h-full h-16 md:bg-transparent md:border-t-0 border-t border-gray-200 bg-white lg:col-span-1 md:col-span-2 block md:static left-0 fixed bottom-0 w-full">
-                            <div className={"h-full w-full"}>
-                                <div
-                                    className="flex h-full justify-center lg:gap-x-8 md:gap-x-5 sm:gap-x-10 gap-x-8 items-center relative">
-                                    {navigation.map((item, key) => (
-                                        <NavItem key={key}
-                                                 href={item.href}
-                                                 current={item.href === router.pathname}
-                                                 showActive={true}
-                                        >
-                                            {item.name}
-                                        </NavItem>
-                                    ))}
-                                </div>
-                            </div>
-                        </nav>
+                    <div className="relative grid grid-cols-2 md:gap-x-2 gap-x-3 items-center justify-between ">
 
-                        <div className={"flex justify-end items-center lg:col-span-1 md:col-span-1 col-span-2"}>
-
-                            <NavItem current={false} href={""}>
-                                <IoNotifications/>
-                            </NavItem>
-
-                            <NavigationMenu icon={<LogoIcon/>} menuItems={ThemeMenu}
-                                            onClick={async (href) => {
-                                                await router.push(href)
-                                            }}/>
-
-                            <NavigationMenu icon={<IoChevronDown/>} menuItems={moreMenu}
-                                            onClick={async (href) => {
-                                                await router.push(href)
-                                            }}/>
-
-
-                        </div>
                     </div>
                 </div>
             </header>

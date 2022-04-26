@@ -1,10 +1,14 @@
-import {IoLaptopOutline, IoMoonSharp, IoSunnySharp} from "react-icons/io5";
+import {IoChevronDown} from "react-icons/io5";
 import classNames from "classnames";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {Menu, MenuItem} from "@UI/Menu";
 import {useTheme} from "next-themes";
 import {useState} from "react";
+import Image from "next/image";
+import Logo from "@images/logo.png";
+import Person from "@images/person.jpg";
+import {navigation} from "@const/navigation";
 
 const Indicator = ({className, style}) => (
     <svg className={classNames(className, "indicator")} style={style} width="94" height="56"
@@ -53,50 +57,65 @@ export const Navigation = () => {
     const {resolvedTheme, setTheme} = useTheme()
     const [searchOpen, setSearchOpen] = useState(false);
 
-    const ThemeMenu = [
-        [
-            {
-                name: "Light",
-                icon: <IoSunnySharp/>,
-                onClick: () => {
-                    setTheme("light")
-                }
-            },
-            {
-                name: "Dark",
-                icon: <IoMoonSharp/>,
-                onClick: () => {
-                    setTheme("dark")
-                }
-            },
-            {
-                name: "System",
-                icon: <IoLaptopOutline/>,
-                onClick: () => {
-                    setTheme("system")
-                }
-            },
-        ]
-    ]
-
-    const LogoIcon = () => {
-        switch (resolvedTheme) {
-            case "dark":
-                return <IoSunnySharp/>
-            case "light":
-                return <IoMoonSharp/>
-            default:
-                return <IoSunnySharp/>
-        }
-    }
-
 
     return (
         <>
-            <header className={"w-full sticky z-50 top-0 left-0 bg-white border-b border-gray-100 h-screen"}>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="relative grid grid-cols-2 md:gap-x-2 gap-x-3 items-center justify-between ">
-
+            <header className={"w-full lg:col-span-2 md:col-span-2 sticky z-50 top-0 left-0 bg-white h-screen"}>
+                <div className="max-w-7xl mx-auto py-8">
+                    <div className={"grid gap-10"}>
+                        <div className={"flex flex-row items-center gap-x-4 lg:px-8 px-2"}>
+                            <div className={"h-16 w-16 relative overflow-hidden"}>
+                                <Image src={Logo} objectFit={"contain"} layout={"fill"}/>
+                            </div>
+                            <p className={"text-theme font-bold text-xl lg:block hidden"}>
+                                Firebolt
+                            </p>
+                        </div>
+                        <p className={"text-slate-900 font-semibold text-xl  lg:px-8 px-2"}>
+                            Menu
+                        </p>
+                        <div className={"grid gap-4"}>
+                            {
+                                navigation.map((each, key) => (
+                                    <Link key={key} passHref href={each.route}>
+                                        <a className={classNames("block gap-x-4 lg:px-8 px-2 py-4",
+                                            "flex flex-row items-center",
+                                            router.route === each.route && "bg-gray-50"
+                                        )}>
+                                            <span className={
+                                                classNames("text-2xl", router.route === each.route ? "text-theme" : "text-slate-500")
+                                            }>
+                                                {each.icon}
+                                            </span>
+                                            <span className={
+                                                classNames("text-md lg:block hidden", router.route === each.route ? "text-black" : "text-slate-500")
+                                            }>
+                                                {each.name}
+                                            </span>
+                                        </a>
+                                    </Link>
+                                ))
+                            }
+                        </div>
+                        <p className={"text-slate-900 flex items-center justify-between font-semibold text-xl  lg:px-8 px-2"}>
+                            <span>
+                                Account
+                            </span>
+                            <span className={"lg:block hidden"}>
+                                <IoChevronDown/>
+                            </span>
+                        </p>
+                        <div className={"lg:px-8 px-2"}>
+                            <div className={"flex gap-x-4 items-center"}>
+                                <div className={"h-12 w-12 relative rounded-full overflow-hidden"}>
+                                    <Image src={Person} objectFit={"cover"} layout={"fill"}/>
+                                </div>
+                                <div className={"lg:block hidden"}>
+                                    <p className={"text-base font-medium text-gray-800"}>Khan Asfi Reza</p>
+                                    <p className={"text-md text-gray-400"}>@reza</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </header>

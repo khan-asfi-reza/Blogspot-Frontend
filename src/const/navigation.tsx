@@ -1,22 +1,22 @@
 import {
-    IoAlbumsOutline,
+    IoAlbums,
     IoCall,
-    IoChatboxOutline,
+    IoChatbox,
     IoHelp,
-    IoHomeOutline,
-    IoLogOutOutline,
-    IoPersonAddOutline,
+    IoHome,
+    IoLogOut,
+    IoPersonAdd,
     IoPersonCircle,
-    IoSettingsOutline,
-    IoShareOutline
+    IoSettings,
+    IoShare
 } from "react-icons/io5";
 
 export const navigation = [
-    {name: <IoHomeOutline/>, href: '/', current: true, route: "/"},
-    {name: <IoPersonAddOutline/>, href: '/friends', current: false, route: "/friends"},
-    {name: <IoChatboxOutline/>, href: '#', current: false, route: "home"},
-    {name: <IoShareOutline/>, href: '#', current: false, route: "home"},
-    {name: <IoAlbumsOutline/>, href: '#', current: false, route: "home"},
+    {name: "Home", icon: <IoHome/>, href: '/', route: "/"},
+    {name: "Followers", icon: <IoPersonAdd/>, href: '/friends', route: "/friends"},
+    {name: "Messages", icon: <IoChatbox/>, href: '#', route: "home"},
+    {name: "Discover", icon: <IoShare/>, href: '#', route: "home"},
+    {name: "More", icon: <IoAlbums/>, href: '#', route: "home"},
 ]
 
 export const moreMenu = [
@@ -29,7 +29,7 @@ export const moreMenu = [
         {
             name: "Settings",
             href: '/settings',
-            icon: <IoSettingsOutline/>
+            icon: <IoSettings/>
         }
     ],
     [
@@ -48,7 +48,7 @@ export const moreMenu = [
         {
             name: "Logout",
             href: '/logout',
-            icon: <IoLogOutOutline/>
+            icon: <IoLogOut/>
         },
     ]
 ]

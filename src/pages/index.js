@@ -7,16 +7,19 @@ import {useState} from "react";
 import Image from "next/image";
 import {AnimatePresence} from "framer-motion";
 import {Div} from "../components/UI/Layout";
+import {Navigation} from "../components/shared/Navigation";
 
 export default function Home() {
 
 
     return (
-        <main className={"bg-themeBg grid grid-cols-12"}>
-            <NavigationComponent/>
-            <MainComponent/>
-            <SecondaryComponent/>
-        </main>
+        <div className={"bg-themeBg"}>
+            <main className={"max-w-[2800px] mx-auto grid grid-cols-12"}>
+                <Navigation/>
+                <MainComponent/>
+                <SecondaryComponent/>
+            </main>
+        </div>
     )
 }
 
@@ -25,7 +28,7 @@ const MainComponent = () => {
 
     return (
         <section
-            className={"lg:p-12 p-8 lg:col-span-7 col-span-7 container max-w-7xl mx-auto border-r-2 border-gray-200"}>
+            className={"lg:p-20 p-8 lg:col-span-7 col-span-10 container max-w-7xl mx-auto border-r-2 border-gray-200"}>
             <div className={"grid "}>
                 <div className={"grid gap-10 lg:col-span-2  relative lg:order-1 order-2"}>
                     <Content name={"David Silva"}
@@ -73,7 +76,8 @@ const NavigationComponent = () => {
 const SecondaryComponent = () => {
     const [searchOpen, setSearchOpen] = useState(false);
     return (
-        <div className={"flex lg:col-span-3 md:col-span-4 sticky flex-col gap-y-10 lg:p-12 p-8 "}>
+        <div
+            className={"flex lg:col-span-3 lg:block md:hidden hidden md:col-span-4 sticky flex-col gap-y-10 lg:p-12 p-8 "}>
             <div className={"relative z-30"}>
                 <SecondaryInput containerProps={{className: "bg-[#fff]"}}
                                 icon={<IoSearchOutline/>}

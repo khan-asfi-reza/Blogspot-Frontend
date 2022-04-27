@@ -31,7 +31,7 @@ module.exports = {
             colors: {
                 theme: "#2A5DC6",
                 themeBg: "#F4F7FF",
-                themeDarkBg: "#F0F4FF",
+                themeDarkBg: "#F9FAFF",
                 bgWhite: "#EEF1F8",
                 blueGray: "#E4E9F4",
             }

@@ -12,12 +12,12 @@ module.exports = {
             ...defaultTheme.screens,
         },
         fontSize: {
-            xs: ['0.75rem', {lineHeight: '1rem'}],
-            sm: ['0.875rem', {lineHeight: '1.25rem'}],
-            md: ['0.955rem', {lineHeight: '1.35rem'}],
-            base: ['1rem', {lineHeight: '1.5rem'}],
-            lg: ['1.125rem', {lineHeight: '1.75rem'}],
-            xl: ['1.25rem', {lineHeight: '1.75rem'}],
+            'xs': ['0.75rem', {lineHeight: '1rem'}],
+            'sm': ['0.875rem', {lineHeight: '1.25rem'}],
+            'md': ['0.955rem', {lineHeight: '1.35rem'}],
+            'base': ['1rem', {lineHeight: '1.5rem'}],
+            'lg': ['1.125rem', {lineHeight: '1.75rem'}],
+            'xl': ['1.25rem', {lineHeight: '1.75rem'}],
             '2xl': ['1.5rem', {lineHeight: '2rem'}],
             '3xl': ['1.875rem', {lineHeight: '2.25rem'}],
             '4xl': ['2.25rem', {lineHeight: '2.5rem'}],
@@ -30,7 +30,8 @@ module.exports = {
         extend: {
             colors: {
                 theme: "#2A5DC6",
-                themeBg: "#F3F5F7",
+                themeBg: "#F4F7FF",
+                themeDarkBg: "#F0F4FF",
                 bgWhite: "#EEF1F8",
                 blueGray: "#E4E9F4",
             }

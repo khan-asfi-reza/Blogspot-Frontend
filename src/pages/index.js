@@ -1,23 +1,171 @@
 import Person from "../assets/images/person.jpg";
 import Code from "../assets/images/code.jpg";
 import Content from "../components/shared/Content";
-import {SecondaryInput} from "../components/UI/Form";
-import {IoSearchOutline} from "react-icons/io5";
 import {useState} from "react";
 import Image from "next/image";
-import {AnimatePresence} from "framer-motion";
-import {Div} from "../components/UI/Layout";
-import {Navigation} from "../components/shared/Navigation";
+import {navigation} from "../const/navigation";
+import Link from "next/link";
+import classNames from "classnames";
+import {useRouter} from "next/router";
+import {useTheme} from "next-themes";
 
 export default function Home() {
-
+    const router = useRouter();
+    const {resolvedTheme, setTheme} = useTheme()
+    const [searchOpen, setSearchOpen] = useState(false);
 
     return (
-        <div className={"bg-themeBg"}>
-            <main className={"max-w-[2800px] mx-auto grid grid-cols-12"}>
-                <Navigation/>
+        <div className={"bg-body"}>
+            <nav className={"w-full h-16 sticky top-0 left-0 bg-nav border-b border-stroke z-50"}>
+
+            </nav>
+            <main className={"max-w-[2800px] mx-auto flex"}>
+                <header
+                    className={"w-full lg:basis-[350px] md:basis-[200px]  lg:col-span-2 md:col-span-2 border-r border-stroke sticky z-40 top-0 left-0 bg-nav h-screen"}>
+                    <div className="max-w-7xl mx-auto py-8">
+                        <div className={"grid gap-10"}>
+
+                            <p className={"text-slate-900 font-semibold text-xl  lg:px-8 px-2"}>
+                                Menu
+                            </p>
+                            <div className={"grid gap-4"}>
+                                {
+                                    navigation.map((each, key) => (
+                                        <Link key={key} passHref href={each.route}>
+                                            <a className={classNames("block gap-x-4 lg:px-8 px-2 py-4",
+                                                "flex flex-row items-center",
+                                                router.route === each.route && "bg-gray-50"
+                                            )}>
+                                            <span className={
+                                                classNames("text-2xl", router.route === each.route ? "text-theme" : "text-subtitle")
+                                            }>
+                                                {each.icon}
+                                            </span>
+                                                <span className={
+                                                    classNames("text-md lg:block hidden", router.route === each.route ? "text-black" : "text-subtitle")
+                                                }>
+                                                {each.name}
+                                            </span>
+                                            </a>
+                                        </Link>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </header>
                 <MainComponent/>
-                <SecondaryComponent/>
+                <div
+                    className={"flex basis-[500px] lg:col-span-3 lg:flex md:hidden hidden md:col-span-4 sticky flex-col gap-y-10 lg:p-12 p-8 "}>
+
+
+                    <div className={"w-full bg-white rounded-xl grid gap-4 py-4 "}>
+                        <h2 className={"text-xl font-bold text-black px-4"}>
+                            Trends
+                        </h2>
+
+                        <div className={"grid"}>
+                            <div className={"border-b border-slate-200 py-4 px-4 hover:bg-slate-200"}>
+                                <p className={"text-gray-600 text-xs"}>
+                                    Trending #1
+                                </p>
+                                <div className={"flex justify-between flex-row "}>
+                                    <p className={"text-gray-700 text-base font-medium"}>
+                                        @React
+                                    </p>
+                                    <p className={"text-gray-600 text-md"}>
+                                        3.5k Blogs
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className={"border-b border-slate-200 py-4 px-4 hover:bg-slate-200"}>
+                                <p className={"text-gray-600 text-xs"}>
+                                    Trending #2
+                                </p>
+                                <div className={"flex justify-between flex-row "}>
+                                    <p className={"text-gray-700 text-base font-medium"}>
+                                        @React
+                                    </p>
+                                    <p className={"text-gray-600 text-md"}>
+                                        3.5k Blogs
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className={"border-b border-slate-200 py-4 px-4 hover:bg-slate-200"}>
+                                <p className={"text-gray-600 text-xs"}>
+                                    Trending #3
+                                </p>
+                                <div className={"flex justify-between flex-row "}>
+                                    <p className={"text-gray-700 text-base font-medium"}>
+                                        @React
+                                    </p>
+                                    <p className={"text-gray-600 text-md"}>
+                                        3.5k Blogs
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button className={"text-left px-4 text-sm "}>
+                            Show More
+                        </button>
+                    </div>
+                    <div className={"w-full bg-white rounded-xl grid gap-4 py-4 "}>
+                        <h2 className={"text-xl font-bold text-black px-4"}>
+                            Trends
+                        </h2>
+
+                        <div className={"grid"}>
+                            <div className={"border-b border-slate-200 py-4 px-4 hover:bg-slate-200"}>
+                                <p className={"text-gray-600 text-xs"}>
+                                    Trending #1
+                                </p>
+                                <div className={"flex justify-between flex-row "}>
+                                    <p className={"text-gray-700 text-base font-medium"}>
+                                        @React
+                                    </p>
+                                    <p className={"text-gray-600 text-md"}>
+                                        3.5k Blogs
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className={"border-b border-slate-200 py-4 px-4 hover:bg-slate-200"}>
+                                <p className={"text-gray-600 text-xs"}>
+                                    Trending #2
+                                </p>
+                                <div className={"flex justify-between flex-row "}>
+                                    <p className={"text-gray-700 text-base font-medium"}>
+                                        @React
+                                    </p>
+                                    <p className={"text-gray-600 text-md"}>
+                                        3.5k Blogs
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className={"border-b border-slate-200 py-4 px-4 hover:bg-slate-200"}>
+                                <p className={"text-gray-600 text-xs"}>
+                                    Trending #3
+                                </p>
+                                <div className={"flex justify-between flex-row "}>
+                                    <p className={"text-gray-700 text-base font-medium"}>
+                                        @React
+                                    </p>
+                                    <p className={"text-gray-600 text-md"}>
+                                        3.5k Blogs
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button className={"text-left px-4 text-sm "}>
+                            Show More
+                        </button>
+                    </div>
+                </div>
             </main>
         </div>
     )
@@ -77,49 +225,8 @@ const SecondaryComponent = () => {
     const [searchOpen, setSearchOpen] = useState(false);
     return (
         <div
-            className={"flex lg:col-span-3 lg:block md:hidden hidden md:col-span-4 sticky flex-col gap-y-10 lg:p-12 p-8 "}>
-            <div className={"relative z-30"}>
-                <SecondaryInput containerProps={{className: "bg-[#fff]"}}
-                                icon={<IoSearchOutline/>}
-                                label={"Search anything"}
+            className={"flex lg:col-span-3 lg:flex md:hidden hidden md:col-span-4 sticky flex-col gap-y-10 lg:p-12 p-8 "}>
 
-                >
-
-                </SecondaryInput>
-                <AnimatePresence exitBeforeEnter>
-                    {
-                        searchOpen &&
-                        <Div initial={{opacity: 0, scale: 0.95}}
-                             animate={{opacity: 1, scale: 1}}
-                             exit={{opacity: 0, scale: 0.95}}
-                             className={"absolute grid gap-y-4 top-[110%] outline outline-gray-100 -left-[5%] ring-1 bg-white w-[110%] z-10 rounded-lg py-4 border border-gray-100"}>
-                            <button
-                                className={"flex group items-center  gap-x-4 px-4 hover:bg-theme py-1 rounded-lg"}>
-                                <div className={"h-10 w-10 rounded-full overflow-hidden relative"}>
-                                    <Image src={Person} alt={""} layout={"fill"} objectFit={"cover"}/>
-                                </div>
-                                <div>
-                                    <p className={"text-md text-gray-800 group-hover:text-gray-50"}>
-                                        David Silva
-                                    </p>
-                                </div>
-                            </button>
-
-                            <button
-                                className={"flex group items-center gap-x-4 px-4 hover:bg-theme py-1 rounded-lg"}>
-                                <div className={"h-10 w-10 rounded-full overflow-hidden relative"}>
-                                    <Image src={Person} alt={""} layout={"fill"} objectFit={"cover"}/>
-                                </div>
-                                <div>
-                                    <p className={"text-md text-gray-800 group-hover:text-gray-50"}>
-                                        David Silva
-                                    </p>
-                                </div>
-                            </button>
-                        </Div>
-                    }
-                </AnimatePresence>
-            </div>
 
             <div className={"w-full bg-white rounded-xl grid gap-4 py-4 "}>
                 <h2 className={"text-xl font-bold text-black px-4"}>

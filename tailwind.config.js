@@ -30,6 +30,15 @@ module.exports = {
         extend: {
             colors: {
                 theme: "#2A5DC6",
+                body: "#F4F7FF",
+                nav: "#F9FAFF",
+                content: "#EDF1FB",
+                title: "#1B1A1A",
+                text: "#505050",
+                subtitle: "#797777",
+                subtext: "#797777",
+                accent: "#E7ECFD",
+                stroke: "#E2E9FF",
                 themeBg: "#F4F7FF",
                 themeDarkBg: "#F9FAFF",
                 bgWhite: "#EEF1F8",

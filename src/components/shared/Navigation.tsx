@@ -100,13 +100,13 @@ export const Header = () => (
                 </div>
                 <div
                     className={"lg:col-span-3 sm:col-span-4 col-span-4 justify-end flex 2xl:gap-x-8 xl:gap-x-4 lg:gap-x-4 sm:gap-x-4 gap-x-1"}>
-                    <button className={"lg:text-3xl text-2xl text-gray-700 sm:block hidden"}>
+                    <button className={"lg:text-2xl text-xl text-gray-700 sm:block hidden"}>
                         <IoMegaphoneOutline/>
                     </button>
-                    <button className={"lg:text-3xl text-2xl text-gray-700"}>
+                    <button className={"lg:text-2xl text-xl text-gray-700"}>
                         <IoNotifications/>
                     </button>
-                    <button className={"lg:text-3xl text-2xl text-gray-700 sm:block hidden"}>
+                    <button className={"lg:text-2xl text-xl text-gray-700 sm:block hidden"}>
                         <IoRadio/>
                     </button>
                     <div className={"flex items-center gap-x-2"}>
@@ -120,7 +120,7 @@ export const Header = () => (
                                 <Image src={Person} objectFit={"cover"} layout={"fill"} alt={"Test"}/>
                             </div>
                         </div>
-                        <button className={"lg:text-3xl text-2xl text-subtext  sm:order-2 order-1"}>
+                        <button className={"lg:text-2xl text-xl text-subtext  sm:order-2 order-1"}>
                             <IoApps/>
                         </button>
                     </div>

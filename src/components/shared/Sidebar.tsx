@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import {MouseEventHandler, useState} from "react";
 import {AnimatePresence, motion} from "framer-motion";
-import {IoChevronBackOutline, IoChevronForwardOutline} from "react-icons/all";
+import {IoChevronBackOutline, IoChevronForwardOutline} from "react-icons/io5";
 
 export function SidebarController({onClick, open}: { onClick: MouseEventHandler<HTMLButtonElement>, open: boolean }) {
 

@@ -2,9 +2,10 @@ import Person from "../assets/images/person.jpg";
 import Code from "../assets/images/code.jpg";
 import Content from "../components/shared/Content";
 import {Navigation} from "../components/shared/Navigation";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Sidebar from "../components/shared/Sidebar";
-
+import Image from "next/image";
+import axios from "axios";
 
 export default function Home() {
 
@@ -29,8 +30,32 @@ export default function Home() {
 
 const MainComponent = () => {
 
+    const [images, setImages] = useState([])
+
+    useEffect(() => {
+        axios.get('https://api.unsplash.com/photos/?client_id=xUWwCMTcPs-YwJx-mqr7LGRtKU32FPeS-NoFSpZhPS8&query=person')
+            .then((res) => {
+                setImages(res.data)
+            })
+            .catch(() => {
+
+            })
+    }, [])
+
     return (
-        <div className={"grid "}>
+        <div className={"grid gap-10 grid-cols-1"}>
+            <p className={"block col-span-2 text-xl font-medium"}>
+                People you follow
+            </p>
+            <div className={"flex items-center justify-between"}>
+                {
+                    images.slice(0, 6).map((each) => (
+                        <div key={each.id} className={"relative h-14 w-14 rounded-full overflow-hidden"}>
+                            <Image src={each.urls.full} alt={each.title} layout={"fill"} objectFit={"cover"}/>
+                        </div>
+                    ))
+                }
+            </div>
             <div className={"grid gap-10 lg:col-span-2  relative lg:order-1 order-2"}>
                 <Content name={"David Silva"}
                          title={"Why not to use PHP"}

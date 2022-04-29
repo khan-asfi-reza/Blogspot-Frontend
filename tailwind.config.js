@@ -30,6 +30,7 @@ module.exports = {
         extend: {
             colors: {
                 theme: "#2A5DC6",
+                themeLight: "#d9e7f8",
                 body: "#F4F7FF",
                 nav: "#F9FAFF",
                 content: "#EDF1FB",

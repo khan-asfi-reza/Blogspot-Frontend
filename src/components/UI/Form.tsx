@@ -224,7 +224,7 @@ export const SecondaryInput = ({
                    data-testid={dataTestId}
                    placeholder={label}
                    className={classNames(
-                       "text-gray-700 selection:bg-theme placeholder:text-sm selection:text-white sm:text-sm text-sm autofill-transparent peer",
+                       "text-gray-700 selection:bg-theme placeholder:text-sm selection:text-white sm:text-sm text-xs autofill-transparent peer",
                        "bg-transparent group-focus-within:border-emerald-500 transition-all",
                        "duration-500 w-full h-full active:outline-0 outline-0 px-1 focus:outline-0", inputProps && inputProps.className)}
             />

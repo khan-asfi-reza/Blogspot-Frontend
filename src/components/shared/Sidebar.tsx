@@ -30,7 +30,9 @@ export default function Sidebar() {
             setSideBarOpen(!isSideBarOpen)
         }} open={isSideBarOpen}/>
         <div
-            className={classNames("lg:col-span-3 lg:transition-none transition-all duration-300 h-full order-3 lg:col-span-3 flex fixed sm:col-span-4", "lg:w-full w-[320px] bg-nav rounded-lg lg:sticky sm:top-16 top-14 lg:bg-transparent lg:right-0 flex-col gap-y-10 lg:p-4 p-2", isSideBarOpen ? "right-0" : "-right-full")}>
+            className={classNames("lg:col-span-3 lg:transition-none transition-all duration-300 h-[calc(100vh-4rem)] order-3 lg:col-span-3 flex fixed sm:col-span-4",
+                "lg:w-full w-[320px] bg-nav rounded-lg lg:sticky lg:top-16 top-14 lg:bg-transparent lg:right-0 flex-col gap-y-10 lg:p-4 p-2",
+                isSideBarOpen ? "right-0" : "-right-full")}>
             <div className={"w-full bg-white rounded-xl grid gap-4 py-4 "}>
                 <h2 className={"text-xl font-bold text-black px-4"}>
                     Trends

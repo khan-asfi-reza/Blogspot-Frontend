@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import Sidebar from "../components/shared/Sidebar";
 import Image from "next/image";
 import axios from "axios";
+import {IoImagesOutline} from "react-icons/io5";
 
 export default function Home() {
 
@@ -17,7 +18,7 @@ export default function Home() {
             <section className={"sm:container mx-auto grid grid-cols-12 sm:pt-16 pt-14 "}>
                 <Navigation.Navbar/>
                 <section
-                    className={"lg:col-span-7 bg-body sm:col-span-11 col-span-12 sm:order-2 order-1 container max-w-7xl py-4 lg:px-12 sm:px-8 px-4  mx-auto lg:border-r-2 border-gray-200"}>
+                    className={"lg:col-span-7 bg-body sm:col-span-11 col-span-12 sm:order-2 order-1 container py-4 lg:px-12 sm:px-8 px-4  mx-auto lg:border-r-2 border-gray-200"}>
                     <MainComponent/>
                 </section>
                 <Sidebar/>
@@ -43,11 +44,11 @@ const MainComponent = () => {
     }, [])
 
     return (
-        <div className={"grid gap-10 grid-cols-1"}>
+        <div className={"flex flex-col gap-10"}>
             <p className={"block col-span-2 text-xl font-medium"}>
                 People you follow
             </p>
-            <div className={"flex items-center justify-between"}>
+            <div className={"flex items-center justify-between col-span-2"}>
                 {
                     images.slice(0, 6).map((each) => (
                         <div key={each.id} className={"relative h-14 w-14 rounded-full overflow-hidden"}>
@@ -56,7 +57,53 @@ const MainComponent = () => {
                     ))
                 }
             </div>
+            <div className={"col-span-2"}>
+                <div className={"inline-flex items-center px-4 py-2 rounded-full bg-accent"}>
+                    <button
+                        className={"inline-flex bg-white gap-x-2 rounded-full text-blue-400 items-center justify-center py-2 px-4"}>
+                        <IoImagesOutline/>
+                        <span>
+                            Following
+                        </span>
+                    </button>
+                    <button className={"inline-flex items-center justify-center p-2"}>
+                        Recommended
+                    </button>
+                </div>
+            </div>
             <div className={"grid gap-10 lg:col-span-2  relative lg:order-1 order-2"}>
+                <Content name={"David Silva"}
+                         title={"Why not to use PHP"}
+                         tags={["React"]}
+                         date={"2022-04-22T20:14:20"}
+                         text={"If I’m saying that PHP is hated by the whole world, it’s not my personal opinion. In the latest stack overflow survey, developers from all over the world put PHP in the top 5 most dreaded languages. The latest Hired survey puts it squarely in the top 2 most hated. There’s a lot more and I’m not even talking about what’s going on Reddit. If you’re a PHP developer since 20 years who came here on a crusade to crucify me on the altar of Symfony, please relax. We’re here to talk, put the gun down. Well now on the contrary if you hate PHP with passion : take some pop-corns and sit down comfortably.\n" + "\n" + "Once upon a time I was doing some Symfony2 myself. And I liked the whole Symfony thing, frankly, it’s not bad. I told this to a developer I met at a devops meetup. He was shocked, he was about to vomit, he looked at me like I just murdered a newborn baby. From now on I’m going to call him James to make it easier. So I immediately asked James a question: why so much hatred?"}
+                         image={Code}
+                         avatar={Person}/>
+
+                <Content name={"David Silva"}
+                         title={"Why not to use PHP"}
+                         tags={["React"]}
+                         date={"2022-04-22T20:14:20"}
+                         text={"If I’m saying that PHP is hated by the whole world, it’s not my personal opinion. In the latest stack overflow survey, developers from all over the world put PHP in the top 5 most dreaded languages. The latest Hired survey puts it squarely in the top 2 most hated. There’s a lot more and I’m not even talking about what’s going on Reddit. If you’re a PHP developer since 20 years who came here on a crusade to crucify me on the altar of Symfony, please relax. We’re here to talk, put the gun down. Well now on the contrary if you hate PHP with passion : take some pop-corns and sit down comfortably.\n" + "\n" + "Once upon a time I was doing some Symfony2 myself. And I liked the whole Symfony thing, frankly, it’s not bad. I told this to a developer I met at a devops meetup. He was shocked, he was about to vomit, he looked at me like I just murdered a newborn baby. From now on I’m going to call him James to make it easier. So I immediately asked James a question: why so much hatred?"}
+                         image={Code}
+                         avatar={Person}/>
+
+                <Content name={"David Silva"}
+                         title={"Why not to use PHP"}
+                         tags={["React"]}
+                         date={"2022-04-22T20:14:20"}
+                         text={"If I’m saying that PHP is hated by the whole world, it’s not my personal opinion. In the latest stack overflow survey, developers from all over the world put PHP in the top 5 most dreaded languages. The latest Hired survey puts it squarely in the top 2 most hated. There’s a lot more and I’m not even talking about what’s going on Reddit. If you’re a PHP developer since 20 years who came here on a crusade to crucify me on the altar of Symfony, please relax. We’re here to talk, put the gun down. Well now on the contrary if you hate PHP with passion : take some pop-corns and sit down comfortably.\n" + "\n" + "Once upon a time I was doing some Symfony2 myself. And I liked the whole Symfony thing, frankly, it’s not bad. I told this to a developer I met at a devops meetup. He was shocked, he was about to vomit, he looked at me like I just murdered a newborn baby. From now on I’m going to call him James to make it easier. So I immediately asked James a question: why so much hatred?"}
+                         image={Code}
+                         avatar={Person}/>
+
+                <Content name={"David Silva"}
+                         title={"Why not to use PHP"}
+                         tags={["React"]}
+                         date={"2022-04-22T20:14:20"}
+                         text={"If I’m saying that PHP is hated by the whole world, it’s not my personal opinion. In the latest stack overflow survey, developers from all over the world put PHP in the top 5 most dreaded languages. The latest Hired survey puts it squarely in the top 2 most hated. There’s a lot more and I’m not even talking about what’s going on Reddit. If you’re a PHP developer since 20 years who came here on a crusade to crucify me on the altar of Symfony, please relax. We’re here to talk, put the gun down. Well now on the contrary if you hate PHP with passion : take some pop-corns and sit down comfortably.\n" + "\n" + "Once upon a time I was doing some Symfony2 myself. And I liked the whole Symfony thing, frankly, it’s not bad. I told this to a developer I met at a devops meetup. He was shocked, he was about to vomit, he looked at me like I just murdered a newborn baby. From now on I’m going to call him James to make it easier. So I immediately asked James a question: why so much hatred?"}
+                         image={Code}
+                         avatar={Person}/>
+
                 <Content name={"David Silva"}
                          title={"Why not to use PHP"}
                          tags={["React"]}

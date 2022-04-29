@@ -208,31 +208,29 @@ export const SecondaryInput = ({
                                    children
                                }: InputInterface) => {
     return (
-        <div>
-            <div {...containerProps} className={classNames("flex flex-row group relative rounded-full",
-                "group  transition-all duration-500", containerProps.className
-            )}>
-                <div
-                    {...iconProps}
-                    data-testid={`${dataTestId}_icon`}
-                    className={classNames("text-lg text-gray-500 duration-500 justify-center transition-all peer-focus:bg-theme rounded-md peer-focus:text-white flex items-center px-2",
-                        iconProps && iconProps.className
-                    )}>
-                    {icon}
-                </div>
-                <input required={true}
-                       {...inputProps}
-                       data-testid={dataTestId}
-                       placeholder={label}
-                       className={classNames(
-                           "text-gray-700 selection:bg-theme placeholder:text-sm selection:text-white sm:text-sm text-sm autofill-transparent peer",
-                           "bg-transparent group-focus-within:border-emerald-500 transition-all",
-                           "duration-500 w-full sm:h-12 h-10 active:outline-0 outline-0 px-1 focus:outline-0", inputProps && inputProps.className)}
-                />
-
-                {children}
-
+        <div {...containerProps} className={classNames("flex flex-row group relative rounded-full",
+            "group  transition-all duration-500", containerProps && containerProps.className
+        )}>
+            <div
+                {...iconProps}
+                data-testid={`${dataTestId}_icon`}
+                className={classNames("text-lg text-gray-500 duration-500 justify-center transition-all peer-focus:bg-theme rounded-md peer-focus:text-white flex items-center px-2",
+                    iconProps && iconProps.className
+                )}>
+                {icon}
             </div>
+            <input required={true}
+                   {...inputProps}
+                   data-testid={dataTestId}
+                   placeholder={label}
+                   className={classNames(
+                       "text-gray-700 selection:bg-theme placeholder:text-sm selection:text-white sm:text-sm text-sm autofill-transparent peer",
+                       "bg-transparent group-focus-within:border-emerald-500 transition-all",
+                       "duration-500 w-full h-full active:outline-0 outline-0 px-1 focus:outline-0", inputProps && inputProps.className)}
+            />
+
+            {children}
+
         </div>
     )
 }

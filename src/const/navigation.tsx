@@ -2,9 +2,9 @@ import {
     IoAlbumsOutline,
     IoCall,
     IoChatboxOutline,
-    IoHelp,
+    IoHelp, IoHelpCircleOutline,
     IoHomeOutline,
-    IoLogOut,
+    IoLogOut, IoLogOutOutline,
     IoPersonAddOutline,
     IoPersonCircle,
     IoSettings,
@@ -13,10 +13,16 @@ import {
 
 export const navigation = [
     {name: "Home", icon: <IoHomeOutline/>, href: '/', route: "/"},
-    {name: "Followers", icon: <IoPersonAddOutline/>, href: '/friends', route: "/friends"},
+    {name: "Followers", icon: <IoPersonAddOutline/>, route: "/friends"},
     {name: "Messages", icon: <IoChatboxOutline/>, href: '#', route: "home"},
     {name: "Discover", icon: <IoShareOutline/>, href: '#', route: "home"},
     {name: "More", icon: <IoAlbumsOutline/>, href: '#', route: "home"},
+]
+
+
+export const helperNavigation = [
+    {name: "Support Center", icon: <IoHelpCircleOutline/>,  route: "/"},
+    {name: "Logout", icon: <IoLogOutOutline/>, route: "/"},
 ]
 
 export const moreMenu = [

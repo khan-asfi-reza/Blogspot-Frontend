@@ -161,20 +161,20 @@ export const P = ({size, children, ...props}: PAttributes) => {
     const textSize = () => {
         let textClassName = "";
 
-        function appendToClassName(screenType){
+        function appendToClassName(screenType, key){
             const classNameMap = sizeClassName[screenType];
-            textClassName += `${classNameMap[size[screenType]]} `
+            textClassName += `${classNameMap[key]} `
         }
 
         if(typeof size === 'object'){
             Object.keys(size).forEach((screenType) => {
-                appendToClassName(screenType);
+                appendToClassName(screenType, size[screenType]);
             })
         }else{
-            appendToClassName('base');
+            appendToClassName('base', size);
         }
 
-        return textClassName;
+        return textClassName.replace(/^\s+|\s+$/g, '');
     }
 
 

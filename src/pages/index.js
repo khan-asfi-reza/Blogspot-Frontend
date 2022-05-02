@@ -10,27 +10,6 @@ import {IoImagesOutline} from "react-icons/io5";
 
 export default function Home() {
 
-    const [isSideBarOpen, setSideBarOpen] = useState(false);
-
-    return (
-        <main className={"bg-body relative"}>
-            <Navigation.Header/>
-            <section className={"sm:container mx-auto grid grid-cols-12 sm:pt-16 pt-14 "}>
-                <Navigation.Navbar/>
-                <section
-                    className={"lg:col-span-7 bg-body sm:col-span-11 col-span-12 sm:order-2 order-1 container py-4 lg:px-12 sm:px-8 px-4  mx-auto lg:border-r-2 border-gray-200"}>
-                    <MainComponent/>
-                </section>
-                <Sidebar/>
-            </section>
-        </main>
-    )
-
-}
-
-
-const MainComponent = () => {
-
     const [images, setImages] = useState([])
 
     useEffect(() => {
@@ -42,6 +21,26 @@ const MainComponent = () => {
 
             })
     }, [])
+
+
+    return (
+        <main className={"bg-body relative "}>
+            <Navigation.Header/>
+            <section className={"sm:container mx-auto grid grid-cols-12 sm:pt-16 pt-14 "}>
+                <Navigation.Navbar/>
+                <section
+                    className={"lg:col-span-7 bg-body sm:col-span-11 col-span-12 sm:order-2 order-1 container py-4 lg:px-12 sm:px-8 px-4  mx-auto lg:border-r-2 border-gray-200"}>
+                    <MainComponent images={images}/>
+                </section>
+                <Sidebar images={images}/>
+            </section>
+        </main>
+    )
+
+}
+
+
+const MainComponent = ({images}) => {
 
     return (
         <div className={"flex flex-col gap-10"}>

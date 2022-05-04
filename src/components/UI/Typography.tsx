@@ -1,7 +1,6 @@
-import {HTMLAttributes, useEffect} from "react";
+import {HTMLAttributes} from "react";
 import classNames from "classnames";
-import {ComponentSizeType, SizeType} from "@UI/types";
-import {instanceOf} from "prop-types";
+import {ComponentSizeType} from "@UI/types";
 
 /**
  * UI Heading, Large Heading with default tailwind classes
@@ -70,11 +69,11 @@ export const HR = ({className, children, ...props}: HTMLAttributes<HTMLHRElement
     <hr className={classNames("border-0 h-2", className)} {...props} />
 )
 
-interface PAttributes extends HTMLAttributes<HTMLParagraphElement>{
+interface PAttributes extends HTMLAttributes<HTMLParagraphElement> {
     size: ComponentSizeType
 }
 
-export const P = ({size, children, ...props}: PAttributes) => {
+export const P = ({size, children, className, ...props}: PAttributes) => {
 
 
     const sizeClassName = {
@@ -161,16 +160,16 @@ export const P = ({size, children, ...props}: PAttributes) => {
     const textSize = () => {
         let textClassName = "";
 
-        function appendToClassName(screenType, key){
+        function appendToClassName(screenType, key) {
             const classNameMap = sizeClassName[screenType];
             textClassName += `${classNameMap[key]} `
         }
 
-        if(typeof size === 'object'){
+        if (typeof size === 'object') {
             Object.keys(size).forEach((screenType) => {
                 appendToClassName(screenType, size[screenType]);
             })
-        }else{
+        } else {
             appendToClassName('base', size);
         }
 
@@ -178,8 +177,8 @@ export const P = ({size, children, ...props}: PAttributes) => {
     }
 
 
-    return(
-        <p className={textSize()}>
+    return (
+        <p className={classNames(className, textSize())} {...props}>
             {children}
         </p>)
 }

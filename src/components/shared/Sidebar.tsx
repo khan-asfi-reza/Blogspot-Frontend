@@ -3,8 +3,6 @@ import {MouseEventHandler, useState} from "react";
 import {AnimatePresence, motion} from "framer-motion";
 import {IoAddSharp, IoChevronBackOutline, IoChevronForwardOutline} from "react-icons/io5";
 import {Avatar} from "@SharedComponents/Avatar";
-import TestImage from "@images/person.jpg";
-import {images} from "next/dist/build/webpack/config/blocks/images";
 
 export function SidebarController({onClick, open}: { onClick: MouseEventHandler<HTMLButtonElement>, open: boolean }) {
 
@@ -30,42 +28,42 @@ export default function Sidebar({images}) {
 
     return (
         <>
-        <SidebarController onClick={() => {
-            setSideBarOpen(!isSideBarOpen)
-        }} open={isSideBarOpen}/>
-        <div
-            className={classNames("lg:col-span-3 overflow-y-auto scrollbar-light lg:transition-none transition-all duration-300 h-[calc(100vh-4rem)] order-3 lg:col-span-3 flex fixed sm:col-span-4",
-                "lg:w-full w-[320px] bg-nav rounded-lg lg:sticky lg:top-16 top-14 lg:bg-transparent lg:right-0 flex-col gap-y-10 lg:p-4 p-2",
-                isSideBarOpen ? "right-0" : "-right-full")}>
-            <div className={"w-full bg-white rounded-xl grid gap-4 py-4 "}>
-                <h2 className={"text-xl font-bold text-black px-4"}>
-                    People to follow
-                </h2>
+            <SidebarController onClick={() => {
+                setSideBarOpen(!isSideBarOpen)
+            }} open={isSideBarOpen}/>
+            <div
+                className={classNames("lg:col-span-3 overflow-y-auto scrollbar-light lg:transition-none transition-all duration-300 h-[calc(100vh-4rem)] order-3 lg:col-span-3 flex fixed sm:col-span-4",
+                    "lg:w-full w-[320px] bg-nav rounded-lg lg:sticky lg:top-16 top-14 lg:bg-transparent lg:right-0 flex-col gap-y-10 lg:p-4 p-2",
+                    isSideBarOpen ? "right-0" : "-right-full")}>
+                <div className={"w-full bg-white rounded-xl grid gap-4 py-4 "}>
+                    <h2 className={"text-xl font-bold text-black px-4"}>
+                        People to follow
+                    </h2>
 
-                <div className={"flex flex-col gap-y-5"}>
+                    <div className={"flex flex-col gap-y-5"}>
 
-                    {
-                        images.slice(0, 6).map((each, key) => (
-                            <div key={key} className={"flex items-center justify-between px-4"}>
-                                <div className={"flex items-center gap-x-2"}>
-                                    <Avatar src={each.urls.full} size={"lg"}/>
-                                    <div>
-                                        <p className={"text-md font-medium text-title"}>{each.first_name} {each.last_name}</p>
-                                        <p className={"text-xs text-subtitle"}>32.5k Follower</p>
+                        {
+                            images.slice(0, 6).map((each, key) => (
+                                <div key={key} className={"flex items-center justify-between px-4"}>
+                                    <div className={"flex items-center gap-x-2"}>
+                                        <Avatar src={each.urls.full} size={"lg"}/>
+                                        <div>
+                                            <p className={"text-md font-medium text-title"}>{each.user.first_name} {each.user.last_name}</p>
+                                            <p className={"text-xs text-subtitle"}>32.5k Follower</p>
+                                        </div>
                                     </div>
+                                    <button className={"p-2 rounded-full bg-blue-100 text-blue-500 text-center"}>
+                                        <IoAddSharp/>
+                                    </button>
                                 </div>
-                                <button className={"p-2 rounded-full bg-blue-100 text-blue-500 text-center"}>
-                                    <IoAddSharp/>
-                                </button>
-                            </div>
-                        ))
-                    }
+                            ))
+                        }
 
-                    <button className={"text-left px-4 text-sm "}>
-                        Show More
-                    </button>
+                        <button className={"text-left px-4 text-sm "}>
+                            Show More
+                        </button>
+                    </div>
                 </div>
-        </div>
-        </div>
-    </>)
+            </div>
+        </>)
 }

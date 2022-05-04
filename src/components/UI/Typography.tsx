@@ -74,7 +74,7 @@ interface PAttributes extends HTMLAttributes<HTMLParagraphElement>{
     size: ComponentSizeType
 }
 
-export const P = ({size, children, ...props}: PAttributes) => {
+export const P = ({size, children, className, ...props}: PAttributes) => {
 
 
     const sizeClassName = {
@@ -179,7 +179,7 @@ export const P = ({size, children, ...props}: PAttributes) => {
 
 
     return(
-        <p className={textSize()}>
+        <p className={classNames(className, textSize())} {...props}>
             {children}
         </p>)
 }

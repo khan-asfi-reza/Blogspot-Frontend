@@ -3,6 +3,7 @@ import {MouseEventHandler, useState} from "react";
 import {AnimatePresence, motion} from "framer-motion";
 import {IoAddSharp, IoChevronBackOutline, IoChevronForwardOutline} from "react-icons/io5";
 import {Avatar} from "@SharedComponents/Avatar";
+import Image from "next/image";
 
 export function SidebarController({onClick, open}: { onClick: MouseEventHandler<HTMLButtonElement>, open: boolean }) {
 
@@ -62,6 +63,33 @@ export default function Sidebar({images}) {
                         <button className={"text-left px-4 text-sm "}>
                             Show More
                         </button>
+                    </div>
+
+                </div>
+
+                <div className={"px-4 w-full bg-white rounded-xl grid gap-4 py-4 "}>
+                    <h2 className={"text-xl font-bold text-black"}>
+                        Contents
+                    </h2>
+
+                    <div style={{gridTemplateRows: 'repeat(3, 150px)'}} className={"grid grid-cols-2 gap-4"}>
+                        {
+                            images && images[0] &&
+                            <div className={'relative col-span-1 rounded-lg overflow-hidden'}>
+                                <Image alt={"Image"} src={images[0].urls.full} objectFit={"cover"} layout={"fill"}/>
+                            </div>
+                        }
+                        {images && images[1] && <div className={'relative col-span-1 row-span-2 rounded-lg overflow-hidden'}>
+                            <Image alt={"Image"} src={images[1].urls.full} objectFit={"cover"} layout={"fill"}/>
+                        </div>}
+                        {images && images[2] && <div className={'relative col-span-1 rounded-lg overflow-hidden'}>
+                            <Image alt={"Image"} src={images[2].urls.full} objectFit={"cover"} layout={"fill"}/>
+                        </div>
+                        }
+                        {images && images[3] && <div className={'relative col-span-2 rounded-lg overflow-hidden'}>
+                            <Image alt={"Image"} src={images[3].urls.full} objectFit={"cover"} layout={"fill"}/>
+                        </div>
+                        }
                     </div>
                 </div>
             </div>

@@ -8,19 +8,7 @@ import Image from "next/image";
 import axios from "axios";
 import {IoImagesOutline} from "react-icons/io5";
 
-export default function Home() {
-
-    const [images, setImages] = useState([])
-
-    useEffect(() => {
-        axios.get('https://api.unsplash.com/photos/?client_id=xUWwCMTcPs-YwJx-mqr7LGRtKU32FPeS-NoFSpZhPS8&query=person')
-            .then((res) => {
-                setImages(res.data)
-            })
-            .catch(() => {
-
-            })
-    }, [])
+export default function Home({images}) {
 
 
     return (
@@ -39,6 +27,21 @@ export default function Home() {
 
 }
 
+export async function getServerSideProps(context){
+    let images;
+    try{
+        images = await axios.get('https://api.unsplash.com/photos/?client_id=xUWwCMTcPs-YwJx-mqr7LGRtKU32FPeS-NoFSpZhPS8&query=person')
+        images = await images.data;
+    }
+    catch (e) {
+
+    }
+    return {
+        props: {
+            images: images
+        }
+    }
+}
 
 const MainComponent = ({images}) => {
 

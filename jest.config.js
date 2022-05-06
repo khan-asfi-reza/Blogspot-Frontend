@@ -31,7 +31,6 @@ const customConfig = {
         "<rootDir>/.next/",
         "<rootDir>/e2e/",
         "<rootDir>/cypress/",
-        "<rootDir>/src/pages",
     ],
     testEnvironment: "jsdom",
     transform: {

@@ -1,4 +1,4 @@
-import AuthMain from "../containers/auth";
+import AuthMain from "@containers/auth";
 
 
 export default function Auth() {

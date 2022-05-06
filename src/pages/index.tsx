@@ -1,27 +1,17 @@
 import Person from "@images/person.jpg";
 import Code from "@images/code.jpg";
 import Content from "@SharedComponents/Content";
-import {Navigation} from "@SharedComponents/Navigation";
-import Sidebar from "@SharedComponents/Sidebar";
 import Image from "next/image";
 import axios from "axios";
 import {IoImagesOutline} from "react-icons/io5";
+import PageLayout from "@containers/layout";
 
 export default function Home({images}) {
 
-
     return (
-        <main className={"bg-body relative"}>
-            <Navigation.Header/>
-            <section className={"sm:container mx-auto grid grid-cols-12 sm:pt-16 pt-14 "}>
-                <Navigation.Navbar/>
-                <section
-                    className={"lg:col-span-7 bg-body sm:col-span-11 col-span-12 sm:order-2 order-1 container py-4 lg:px-12 sm:px-8 px-4  mx-auto lg:border-r-2 border-gray-200"}>
-                    <MainComponent images={images}/>
-                </section>
-                <Sidebar/>
-            </section>
-        </main>
+        <PageLayout title={"Firebolt | Home"}>
+            <MainComponent images={images}/>
+        </PageLayout>
     )
 
 }
@@ -50,7 +40,7 @@ const MainComponent = ({images}) => {
             </p>
             <div className={"flex items-center justify-between col-span-2"}>
                 {
-                    images.slice(0, 6).map((each) => (
+                    images.slice(0, 8).map((each) => (
                         <div key={each.id} className={"relative h-14 w-14 rounded-full overflow-hidden"}>
                             <Image src={each.urls.full} alt={each.title} layout={"fill"} objectFit={"cover"}/>
                         </div>

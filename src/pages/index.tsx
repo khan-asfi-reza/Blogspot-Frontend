@@ -1,30 +1,17 @@
-import Person from "../assets/images/person.jpg";
-import Code from "../assets/images/code.jpg";
-import Content from "../components/shared/Content";
-import {Navigation} from "../components/shared/Navigation";
-import {useEffect, useState} from "react";
-import Sidebar from "../components/shared/Sidebar";
+import Person from "@images/person.jpg";
+import Code from "@images/code.jpg";
+import Content from "@SharedComponents/Content";
+import {Navigation} from "@SharedComponents/Navigation";
+import Sidebar from "@SharedComponents/Sidebar";
 import Image from "next/image";
 import axios from "axios";
 import {IoImagesOutline} from "react-icons/io5";
 
-export default function Home() {
-
-    const [images, setImages] = useState([])
-
-    useEffect(() => {
-        axios.get('https://api.unsplash.com/photos/?client_id=xUWwCMTcPs-YwJx-mqr7LGRtKU32FPeS-NoFSpZhPS8&query=person')
-            .then((res) => {
-                setImages(res.data)
-            })
-            .catch(() => {
-
-            })
-    }, [])
+export default function Home({images}) {
 
 
     return (
-        <main className={"bg-body relative "}>
+        <main className={"bg-body relative"}>
             <Navigation.Header/>
             <section className={"sm:container mx-auto grid grid-cols-12 sm:pt-16 pt-14 "}>
                 <Navigation.Navbar/>
@@ -32,13 +19,27 @@ export default function Home() {
                     className={"lg:col-span-7 bg-body sm:col-span-11 col-span-12 sm:order-2 order-1 container py-4 lg:px-12 sm:px-8 px-4  mx-auto lg:border-r-2 border-gray-200"}>
                     <MainComponent images={images}/>
                 </section>
-                <Sidebar images={images}/>
+                <Sidebar/>
             </section>
         </main>
     )
 
 }
 
+export async function getServerSideProps(context) {
+    let images;
+    try {
+        images = await axios.get('https://api.unsplash.com/photos/?client_id=xUWwCMTcPs-YwJx-mqr7LGRtKU32FPeS-NoFSpZhPS8&query=person')
+        images = await images.data;
+    } catch (e) {
+
+    }
+    return {
+        props: {
+            images: images
+        }
+    }
+}
 
 const MainComponent = ({images}) => {
 

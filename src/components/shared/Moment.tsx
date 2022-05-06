@@ -1,7 +1,7 @@
 import moment from "moment";
 import {useCallback, useEffect, useState} from "react";
 
-export default function Moment({date}: { date: Date }) {
+export default function Moment({date}: { date: string }) {
 
     const [dateTime, setDateTime] = useState<string | Date>("")
 

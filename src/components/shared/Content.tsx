@@ -6,7 +6,7 @@ import Number from "@SharedComponents/Number";
 export interface ContentProps {
     avatar: StaticImageData | string,
     name: string,
-    date: Date,
+    date: string,
     title: string,
     text: string,
     image: StaticImageData | string,
@@ -17,7 +17,7 @@ export default function Content(props: ContentProps) {
 
 
     return (
-        <div className={"grid grid-cols-2 gap-6 bg-content sm:p-8 p-4 rounded-lg"}>
+        <article className={"grid grid-cols-2 gap-6 bg-content sm:p-8 p-4 rounded-lg"}>
             <div
                 className={"xl:order-1  xl:col-span-1 order-3 col-span-2 xl:h-auto h-60 row-span-4 relative rounded-xl overflow-hidden"}>
                 <Image src={props.image} objectFit={"cover"} layout={"fill"} alt={"Image"}/>
@@ -62,6 +62,6 @@ export default function Content(props: ContentProps) {
                 </p>
             </div>
 
-        </div>
+        </article>
     )
 }

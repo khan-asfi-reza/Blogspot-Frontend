@@ -1,5 +1,5 @@
 function getNumberString(breakpoint: number, number: number, suffix: string) {
-    if (number > breakpoint) {
+    if (number >= breakpoint) {
         let kNumber = number / breakpoint
         return `${kNumber.toFixed(1)}${suffix}`
     }
@@ -24,7 +24,6 @@ const numberList = [
 export default function Number({number}: { number: number }) {
     let string;
     for (const {breakpoint, suffix} of numberList) {
-        console.log(breakpoint, suffix)
         string = getNumberString(breakpoint, number, suffix);
     }
     string = string !== undefined ? string : number.toString();

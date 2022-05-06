@@ -10,7 +10,7 @@ module.exports = [
             },
             {
                 name: "Layouts",
-                components: "src/components/UI/Layout/Layout.tsx",
+                components: "src/components/UI/Layout/index.tsx",
                 content: "docs/components/Layout.md",
                 exampleMode: 'expand',
             }

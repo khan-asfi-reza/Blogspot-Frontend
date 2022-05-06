@@ -1,12 +1,16 @@
 import '../styles/globals.css'
 import {AnimatePresence} from "framer-motion";
-import {ThemeProvider} from "next-themes"
+import {QueryClient, QueryClientProvider} from "react-query";
+
+const queryClient = new QueryClient()
 
 function App({Component, pageProps}) {
     return (
-        <AnimatePresence exitBeforeEnter={true}>
-            <Component {...pageProps}/>
-        </AnimatePresence>
+        <QueryClientProvider client={queryClient}>
+            <AnimatePresence exitBeforeEnter={true}>
+                <Component {...pageProps}/>
+            </AnimatePresence>
+        </QueryClientProvider>
         // <ThemeProvider enableSystem={true} defaultTheme={"system"} attribute={"class"}>
         //   <AnimatePresence exitBeforeEnter={true}>
         //       <Component {...pageProps}/>
